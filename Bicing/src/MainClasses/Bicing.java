@@ -21,9 +21,6 @@ public class Bicing {
      */
     public static void main(String[] args) {
         Estaciones e;
-        //pruebacommit
-        //int i;
-        System.out.println("Hola Melon");
     }
     
 }
