@@ -39,11 +39,11 @@ int Demanda
 Estats:
 
 Struct camio{
-     //x1y1 Desti1
-     //x2y2 Desti2
-     //sxsy ESortida
+     //IdD1 Desti1
+     //IdD2 Desti2
+     //IdS ESortida
      //NumBicis Numero de bicis que porta el camio
-     int x1, y1, x2, y2, sx,sy,NumBicis;
+     int idd1, idd2, ids, NumBicis;
 }
 
 
