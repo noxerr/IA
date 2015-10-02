@@ -23,7 +23,7 @@ public class Bicing {
         Estaciones e;
         //pruebacommit
         //commit2
-        int i;
+        //int i;
     }
     
 }
