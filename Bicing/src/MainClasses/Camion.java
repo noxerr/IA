@@ -43,11 +43,11 @@ public class Camion {
     }
     
     public int get_Desti2x(){
-        return desti1x;
+        return desti2x;
     }
     
     public int get_Desti2y(){
-        return desti1y;
+        return desti2y;
     }
     
     public int get_SortidaX(){
