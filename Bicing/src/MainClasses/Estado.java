@@ -6,23 +6,35 @@
 
 package MainClasses;
 import IA.Bicing.*;
+import java.util.List;
+
 /**
  *
  * @author Ferran
  */
 public class Estado {
-
-    Camion[] vecCamiones;
+    List<Camion> vecCamiones;
     Estaciones vecEstacion;
-
-    Estado(int nC, Estaciones e){
-        this.vecCamiones = new Camion[nC];
-        vecEstacion = e;
-    }
+    int BicisTrasladadas;
+    int BicisMalColocadas;
     
-    Estado (Camion[] vc, Estaciones e){
-        this.vecCamiones = vc;
+    Estado (List<Camion> lc, Estaciones e){
+        this.vecCamiones = lc;
         this.vecEstacion = e;
+        this.BicisMalColocadas = 0;
+        this.BicisTrasladadas = 0;
     }
     
+    //Operadores:
+    //Pre: El Camion no esta Cargado
+    //Post: El camion tiene una Estacion Salida i NumBicis
+    void cargarCamionSetDestino(Camion c, Estacion e, Estacion d1, Estacion d2){
+        c.set_Sortida(e.getCoordX(), e.getCoordY());
+        c.set_NumBicis(e.getNumBicicletasNoUsadas());
+    }
+    
+    void llenarEstacion(Camion c, Estacion e){
+        int demanda = e.getDemanda();
+        int BicisNoUsadas = e.getNumBicicletasNoUsadas();
+    }
 }
