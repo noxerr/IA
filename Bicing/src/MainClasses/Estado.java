@@ -30,7 +30,7 @@ public class Estado {
     //Post: El camion tiene una Estacion Salida i NumBicis
     void cargarCamion(Camion c, Estaciones e){
         //c.set_Sortida(e.getCoordX(), e.getCoordY());
-        //c.set_NumBicis(e.getNumBicicletasNoUsadas());
+        ///c.set_NumBicis(e.getNumBicicletasNoUsadas());
     }
     
     void setDestino1(Camion c, Estaciones e){
