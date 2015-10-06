@@ -28,9 +28,13 @@ public class Estado {
     //Operadores:
     //Pre: El Camion no esta Cargado
     //Post: El camion tiene una Estacion Salida i NumBicis
-    void cargarCamionSetDestino(Camion c, Estacion e, Estacion d1, Estacion d2){
+    void cargarCamion(Camion c, Estacion e){
         c.set_Sortida(e.getCoordX(), e.getCoordY());
         c.set_NumBicis(e.getNumBicicletasNoUsadas());
+    }
+    
+    void setDestino1(Camion c, Estacion e){
+        c.set_Desti1(e.getCoordX(), e.getCoordY());
     }
     
     void llenarEstacion(Camion c, Estacion e){
