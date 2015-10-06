@@ -15,33 +15,20 @@ import java.util.List;
 public class Estado {
     List<Camion> vecCamiones;
     Estaciones vecEstacion;
-    int BicisTrasladadas;
-    int BicisMalColocadas;
+    int bicisSobranTotal;
+    int bicisFaltanTotal;
     
     Estado (List<Camion> lc, Estaciones e){
+        vecCamiones = lc;
+        vecEstacion = e;
+    }
+    
+    Estado (List<Camion> lc, Estaciones e, int bicisSobranTotal, int bicisFaltanTotal){
         this.vecCamiones = lc;
         this.vecEstacion = e;
-        this.BicisMalColocadas = 0;
-        this.BicisTrasladadas = 0;
+        this.bicisSobranTotal = bicisSobranTotal;
+        this.bicisFaltanTotal = bicisFaltanTotal;
     }
     
-    //Operadores:
-    //Pre: El Camion no esta Cargado
-    //Post: El camion tiene una Estacion Salida i NumBicis
-    void cargarCamion(Camion c, Estaciones e){
-        //c.set_Sortida(e.getCoordX(), e.getCoordY());
-        ///c.set_NumBicis(e.getNumBicicletasNoUsadas());
-    }
     
-    void setDestino1(Camion c, Estaciones e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
-    }
-    
-    void setDestino2(Camion c, Estaciones e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
-    }
-    
-    void vaciarCamiones(){
-
-    }
 }
