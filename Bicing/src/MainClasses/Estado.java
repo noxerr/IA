@@ -37,8 +37,11 @@ public class Estado {
         c.set_Desti1(e.getCoordX(), e.getCoordY());
     }
     
-    void llenarEstacion(Camion c, Estacion e){
-        int demanda = e.getDemanda();
-        int BicisNoUsadas = e.getNumBicicletasNoUsadas();
+    void setDestino2(Camion c, Estacion e){
+        c.set_Desti1(e.getCoordX(), e.getCoordY());
+    }
+    
+    void vaciarCamiones(){
+
     }
 }
