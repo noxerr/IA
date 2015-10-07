@@ -19,7 +19,7 @@ public class Estado {
     public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
     Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
-            int difBicis, int bicisFaltanTotal){
+            int difBicis){
         this.vecCamiones = lc;
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
@@ -40,11 +40,6 @@ public class Estado {
     
     public int setBicisFaltan(int bicis){
         return this.bicisFaltanTotal = bicis;
-    }*/
-
-    Estado(ArrayList arrayList, ArrayList<Estacion> over, ArrayList<Estacion> under, int bicisOver_Under) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }*/    
     
 }

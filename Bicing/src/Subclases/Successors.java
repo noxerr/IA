@@ -20,7 +20,8 @@ public class Successors implements SuccessorFunction{
     //que representa la operacion que se ha aplicado y el estado sucesor resultante.
     @Override 
     public List getSuccessors(Object o) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
+        //return null;
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos
         //ProbTSPSuccessorFunction b;
     }

@@ -19,13 +19,14 @@ import java.util.logging.Logger;
  */
 public class Bicing {
     public static Estaciones e;
+    public static int Furgos = 5;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //Para generar los escenarios deberéis hacer 
         //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
-        e = new Estaciones(10, 500, Estaciones.EQUILIBRIUM, 1234);
+        e = new Estaciones(25, 1250, Estaciones.EQUILIBRIUM, 1);
         ArrayList<Estacion> over = new ArrayList();
         ArrayList<Estacion> under = new ArrayList();
         int bicisOver_Under = 0;

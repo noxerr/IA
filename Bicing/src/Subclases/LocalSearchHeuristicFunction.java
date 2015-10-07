@@ -21,7 +21,7 @@ div es la división entera. Tener en cuenta las bicis EN EL MOMENTO CONCRETO que
     */
     @Override
     public double getHeuristicValue(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
 }
