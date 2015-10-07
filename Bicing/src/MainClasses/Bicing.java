@@ -1,7 +1,17 @@
 package MainClasses;
 
 import IA.Bicing.*;
+import Subclases.EstadoFinalTest;
+import Subclases.LocalSearchHeuristicFunction;
+import Subclases.Successors;
+import aima.search.framework.Problem;
+import aima.search.framework.Search;
+import aima.search.framework.SearchAgent;
+import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,13 +26,24 @@ public class Bicing {
         e = new Estaciones(10, 5, 0, 1234);
         ArrayList<Estacion> over = new ArrayList();
         ArrayList<Estacion> under = new ArrayList();
-        int bicisOver = 0, bicisUnder = 0;
-        for (int i = 0; i < e.size(); i++){
+        int bicisOver_Under = 0;
+        int aux;
+        for (Estacion e1 : e) {
+            aux = e1.getNumBicicletasNext()-e1.getDemanda();
+            if (aux > 0) over.add(e1);
+            else under.add(e1);
+            bicisOver_Under += aux;
         }
-        Estado estatInicial = new Estado(new ArrayList(30), over, under, bicisOver, bicisUnder);
+        Estado estatInicial = new Estado(new ArrayList(30), over, under, bicisOver_Under);
         
-        //okok.... pepiiitonono
-        //NO
+        Problem problem = new Problem(estatInicial, new Successors(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
+        Search searchHClimbing = new HillClimbingSearch();
+        Search searchSAnnealing = new SimulatedAnnealingSearch();
+        try {
+            SearchAgent agent = new SearchAgent(problem, searchHClimbing);
+        } catch (Exception ex) {
+            Logger.getLogger(Bicing.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

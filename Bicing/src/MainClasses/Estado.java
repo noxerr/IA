@@ -16,15 +16,14 @@ import java.util.List;
 public class Estado {
     List<Camion> vecCamiones;
     public ArrayList<Estacion> estacOver, estacUnder;
-    public int bicisSobranTotal, bicisFaltanTotal;
+    public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
     Estado (List<Camion> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
-            int bicisSobranTotal, int bicisFaltanTotal){
+            int difBicis, int bicisFaltanTotal){
         this.vecCamiones = lc;
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
-        this.bicisSobranTotal = bicisSobranTotal;
-        this.bicisFaltanTotal = bicisFaltanTotal;
+        this.difBicis = difBicis;
     }
     
     /*public int getBicisSobran(){
@@ -42,6 +41,10 @@ public class Estado {
     public int setBicisFaltan(int bicis){
         return this.bicisFaltanTotal = bicis;
     }*/
+
+    Estado(ArrayList arrayList, ArrayList<Estacion> over, ArrayList<Estacion> under, int bicisOver_Under) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

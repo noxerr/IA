@@ -13,9 +13,10 @@ import aima.search.framework.GoalTest;
  */
 public class EstadoFinalTest implements GoalTest{
 
+    //Le pasan un estado y retorna cierto si es final
     @Override
     public boolean isGoalState(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false; //nunca sabemos si el estado es final en realidad, es como el viajante de comercio
     }
     
 }
