@@ -5,6 +5,7 @@
  */
 package MainClasses;
 
+import IA.Bicing.Estacion;
 import IA.Bicing.Estaciones;
 
 /**
@@ -15,17 +16,17 @@ public class Operadores {
     //Operadores:
     //Pre: El Camion no esta Cargado
     //Post: El camion tiene una Estacion Salida i NumBicis
-    void cargarCamion(Camion c, Estaciones e){
-        //c.set_Sortida(e.getCoordX(), e.getCoordY());
-        ///c.set_NumBicis(e.getNumBicicletasNoUsadas());
+    void cargarCamion(Camion c, Estacion e){
+        c.set_Sortida(e.getCoordX(), e.getCoordY());
+        c.set_NumBicis(e.getNumBicicletasNoUsadas());
     }
     
-    void setDestino1(Camion c, Estaciones e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
+    void setDestino1(Camion c, Estacion e){
+        c.set_Desti1(e.getCoordX(), e.getCoordY());
     }
     
-    void setDestino2(Camion c, Estaciones e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
+    void setDestino2(Camion c, Estacion e){
+        c.set_Desti1(e.getCoordX(), e.getCoordY());
     }
     
     void vaciarCamiones(){
