@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package MainClasses;
+package Subclases;
 
 import aima.search.framework.HeuristicFunction;
 /**

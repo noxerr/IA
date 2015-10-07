@@ -13,7 +13,7 @@ public class Bicing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        e = new Estaciones(10, 5, 0, 1);
+        e = new Estaciones(10, 5, 0, 1234);
         ArrayList<Estacion> over = new ArrayList();
         ArrayList<Estacion> under = new ArrayList();
         int bicisOver = 0, bicisUnder = 0;
