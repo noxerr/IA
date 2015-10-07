@@ -18,7 +18,18 @@ public class Operadores {
     //Post: El camion tiene una Estacion Salida i NumBicis
     void cargarCamion(Camion c, Estacion e){
         c.set_Sortida(e.getCoordX(), e.getCoordY());
-        c.set_NumBicis(e.getNumBicicletasNoUsadas());
+        c.NumBicis = e.getNumBicicletasNoUsadas();
+        //falta actualizar estacion
+    }
+    
+    void cargaCamionConLoJusto(Camion c, Estacion e){
+        c.set_Sortida(e.getCoordX(), e.getCoordY());
+        c.NumBicis += e.getNumBicicletasNoUsadas() > (-c.NumBicis) ? (-c.NumBicis) : e.getNumBicicletasNoUsadas();
+    }
+    
+    void llenarEstacion(Camion c, int bicisQuePuedeDescargar, Estacion e){
+        c.NumBicis -= bicisQuePuedeDescargar;
+        e.setDemanda(e.getNumBicicletasNext()+bicisQuePuedeDescargar);
     }
     
     void setDestino1(Camion c, Estacion e){
@@ -29,7 +40,4 @@ public class Operadores {
         c.set_Desti1(e.getCoordX(), e.getCoordY());
     }
     
-    void vaciarCamiones(){
-
-    }
 }

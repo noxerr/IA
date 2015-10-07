@@ -17,7 +17,7 @@ public class Camion {
      private int desti1x, desti1y;
      private int desti2x, desti2y;
      private int sortidaX, sortidaY;
-     private int NumBicis;
+     public int NumBicis;
 
     public Camion(){
       desti1x = 0;
@@ -27,12 +27,7 @@ public class Camion {
       sortidaX= 0;
       sortidaY= 0;
       NumBicis= 0;
-    }
-     
-    public int get_NumBicis(){
-        return NumBicis;
-    }
-    
+    }    
     
     public int get_Desti1x(){
         return desti1x;
@@ -61,10 +56,6 @@ public class Camion {
     public void set_Desti1(int x, int y){
         this.desti1x=x;
         this.desti1y=y;
-    }
-    
-    public void set_NumBicis(int x){
-        this.NumBicis = x;
     }
     
     public void set_Desti2(int x, int y){

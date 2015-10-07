@@ -6,6 +6,7 @@
 
 package MainClasses;
 import IA.Bicing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,21 +15,33 @@ import java.util.List;
  */
 public class Estado {
     List<Camion> vecCamiones;
-    Estaciones vecEstacion;
-    int bicisSobranTotal;
-    int bicisFaltanTotal;
+    public ArrayList<Estacion> estacOver, estacUnder;
+    public int bicisSobranTotal, bicisFaltanTotal;
     
-    Estado (List<Camion> lc, Estaciones e){
-        vecCamiones = lc;
-        vecEstacion = e;
-    }
-    
-    Estado (List<Camion> lc, Estaciones e, int bicisSobranTotal, int bicisFaltanTotal){
+    Estado (List<Camion> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
+            int bicisSobranTotal, int bicisFaltanTotal){
         this.vecCamiones = lc;
-        this.vecEstacion = e;
+        this.estacOver = new ArrayList(over);
+        this.estacUnder = new ArrayList(under);
         this.bicisSobranTotal = bicisSobranTotal;
         this.bicisFaltanTotal = bicisFaltanTotal;
     }
+    
+    /*public int getBicisSobran(){
+        return this.bicisSobranTotal;
+    }
+    
+    public int getBicisFaltan(){
+        return this.bicisFaltanTotal;
+    }
+    
+    public int setBicisSobran(int bicis){
+        return this.bicisSobranTotal = bicis;
+    }
+    
+    public int setBicisFaltan(int bicis){
+        return this.bicisFaltanTotal = bicis;
+    }*/
     
     
 }

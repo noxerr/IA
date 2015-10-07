@@ -1,27 +1,26 @@
 package MainClasses;
 
 import IA.Bicing.*;
-
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import java.util.ArrayList;
 
 /**
  *
  * @author Dani
  */
 public class Bicing {
+    public static Estaciones e;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Estaciones e;
-        Estacion heDichoPepito;
+        e = new Estaciones(10, 5, 0, 1);
+        ArrayList<Estacion> over = new ArrayList();
+        ArrayList<Estacion> under = new ArrayList();
+        int bicisOver = 0, bicisUnder = 0;
+        for (int i = 0; i < e.size(); i++){
+        }
+        Estado estatInicial = new Estado(new ArrayList(30), over, under, bicisOver, bicisUnder);
+        
         //okok.... pepiiitonono
         //NO
     }
