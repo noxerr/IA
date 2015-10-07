@@ -5,8 +5,12 @@
  */
 package Subclases;
 
+import MainClasses.Estado;
+import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -20,9 +24,28 @@ public class SuccessoresSA implements SuccessorFunction{
     //que representa la operacion que se ha aplicado y el estado sucesor resultante.
     @Override 
     public List getSuccessors(Object o) {
-        return null;
-        //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos
-        //ProbTSPSuccessorFunction b;
+        ArrayList retVal = new ArrayList();
+        Estado oldEstado = (Estado) o;
+        LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
+        
+        Random myRandom=new Random();
+        /*int i,j;
+        
+        // Nos ahorramos generar todos los sucesores escogiendo un par de ciudades al azar
+        
+       i=myRandom.nextInt(board.getNCities());
+       
+       do{
+              j=myRandom.nextInt(board.getNCities());
+       } while (i==j);*/
+        
+        
+        Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, oldEstado.difBicis);
+        //aplicamos ops en esta linea
+        double v = LSHF.getHeuristicValue(nuevoEstado);
+        String operacionAplicada = "Nada: " + v;
+        retVal.add(new Successor(operacionAplicada, nuevoEstado));
+        return retVal;
     }
     
 }
