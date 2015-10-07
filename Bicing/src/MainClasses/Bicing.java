@@ -2,6 +2,7 @@ package MainClasses;
 
 import IA.Bicing.*;
 import Subclases.EstadoFinalTest;
+import Subclases.EstadoInicial;
 import Subclases.LocalSearchHeuristicFunction;
 import Subclases.Successores;
 import aima.search.framework.Problem;
@@ -27,18 +28,19 @@ public class Bicing {
         //Para generar los escenarios deberéis hacer 
         //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
         e = new Estaciones(25, 1250, Estaciones.EQUILIBRIUM, 1);
-        ArrayList<Estacion> over = new ArrayList();
-        ArrayList<Estacion> under = new ArrayList();
-        int bicisOver_Under = 0;
-        int aux;
-        for (Estacion e1 : e) {
-            aux = e1.getNumBicicletasNext()-e1.getDemanda();
-            if (aux > 0) over.add(e1);
-            else under.add(e1);
-            bicisOver_Under += aux;
-        }
-        Estado estatInicial = new Estado(new ArrayList(), over, under, bicisOver_Under);
         
+        //ArrayList<Estacion> over = new ArrayList();
+        //ArrayList<Estacion> under = new ArrayList();
+        //int bicisOver_Under = 0;
+        //int aux;
+        //for (Estacion e1 : e) {
+            //aux = e1.getNumBicicletasNext()-e1.getDemanda();
+            //if (aux > 0) over.add(e1);
+            //else under.add(e1);
+            //bicisOver_Under += aux;
+        //}
+        //Estado estatInicial = new Estado(new ArrayList(), over, under, bicisOver_Under);
+        Estado estatInicial = new EstadoInicial(e);
         Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
         Search searchHClimbing = new HillClimbingSearch();
         Search searchSAnnealing = new SimulatedAnnealingSearch();

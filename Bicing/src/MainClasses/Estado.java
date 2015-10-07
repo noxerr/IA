@@ -18,6 +18,13 @@ public class Estado {
     public ArrayList<Estacion> estacOver, estacUnder;
     public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
+    public Estado(){
+        vecCamiones = new ArrayList();
+        estacOver = new ArrayList();
+        estacUnder = new ArrayList();
+        difBicis = 0;
+    }
+    
     public Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
             int difBicis){
         this.vecCamiones = lc;
