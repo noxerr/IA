@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Dani
  */
-public class SuccessorsSA implements SuccessorFunction{
+public class SuccessoresSA implements SuccessorFunction{
 
     //Esta funcion genera la lista de los estados accesibles a partir del
     //que recibe como parametro.

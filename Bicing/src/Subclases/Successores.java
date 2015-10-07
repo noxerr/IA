@@ -5,14 +5,17 @@
  */
 package Subclases;
 
+import MainClasses.Estado;
+import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Dani
  */
-public class Successors implements SuccessorFunction{
+public class Successores implements SuccessorFunction{
 
     //Esta funcion genera la lista de los estados accesibles a partir del
     //que recibe como parametro.
@@ -20,8 +23,16 @@ public class Successors implements SuccessorFunction{
     //que representa la operacion que se ha aplicado y el estado sucesor resultante.
     @Override 
     public List getSuccessors(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //return null;
+        //throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList retVal = new ArrayList();
+        Estado oldEstado = (Estado) o;
+        LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
+        
+        Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, oldEstado.difBicis);
+        double v = LSHF.getHeuristicValue(nuevoEstado);
+        String operacionAplicada = "Nada: " + v;
+        retVal.add(new Successor(operacionAplicada, nuevoEstado));
+        return retVal;
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos
         //ProbTSPSuccessorFunction b;
     }

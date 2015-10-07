@@ -14,11 +14,11 @@ import java.util.List;
  * @author Ferran
  */
 public class Estado {
-    List<Furgoneta> vecCamiones;
+    public List<Furgoneta> vecCamiones;
     public ArrayList<Estacion> estacOver, estacUnder;
     public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
-    Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
+    public Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
             int difBicis){
         this.vecCamiones = lc;
         this.estacOver = new ArrayList(over);

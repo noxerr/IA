@@ -3,7 +3,7 @@ package MainClasses;
 import IA.Bicing.*;
 import Subclases.EstadoFinalTest;
 import Subclases.LocalSearchHeuristicFunction;
-import Subclases.Successors;
+import Subclases.Successores;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -39,7 +39,7 @@ public class Bicing {
         }
         Estado estatInicial = new Estado(new ArrayList(), over, under, bicisOver_Under);
         
-        Problem problem = new Problem(estatInicial, new Successors(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
+        Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
         Search searchHClimbing = new HillClimbingSearch();
         Search searchSAnnealing = new SimulatedAnnealingSearch();
         try {
