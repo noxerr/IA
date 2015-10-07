@@ -23,7 +23,9 @@ public class Bicing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        e = new Estaciones(10, 5, 0, 1234);
+        //Para generar los escenarios deberéis hacer 
+        //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
+        e = new Estaciones(10, 500, Estaciones.EQUILIBRIUM, 1234);
         ArrayList<Estacion> over = new ArrayList();
         ArrayList<Estacion> under = new ArrayList();
         int bicisOver_Under = 0;
@@ -34,7 +36,7 @@ public class Bicing {
             else under.add(e1);
             bicisOver_Under += aux;
         }
-        Estado estatInicial = new Estado(new ArrayList(30), over, under, bicisOver_Under);
+        Estado estatInicial = new Estado(new ArrayList(), over, under, bicisOver_Under);
         
         Problem problem = new Problem(estatInicial, new Successors(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
         Search searchHClimbing = new HillClimbingSearch();

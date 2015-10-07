@@ -9,7 +9,7 @@ package MainClasses;
  *
  * @author Ferran
  */
-public class Camion {
+public class Furgoneta {
      //IdD1 Desti1
      //IdD2 Desti2
      //IdS ESortida
@@ -18,8 +18,9 @@ public class Camion {
      private int desti2x, desti2y;
      private int sortidaX, sortidaY;
      public int NumBicis;
+     public int maxBicis = 30;
 
-    public Camion(){
+    public Furgoneta(){
       desti1x = 0;
       desti1y = 0;
       desti2x = 0;
