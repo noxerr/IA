@@ -6,7 +6,6 @@
 
 package Subclases;
 
-import IA.Bicing.Estacion;
 import IA.Bicing.Estaciones;
 import MainClasses.Estado;
 
@@ -22,14 +21,12 @@ public class EstadoInicial extends Estado{
     }
 
     private void generaEstadoInicial(Estaciones e){  
-        int aux;
-        for (Estacion e1 : e) {
-            aux = e1.getNumBicicletasNext()-e1.getDemanda();
-            if (aux > 0) estacOver.add(e1);
-            else estacUnder.add(e1);
-            difBicis += aux;
+        for (int i = 0; i < e.size(); i++) {
+            if (e.get(i).getNumBicicletasNext()-e.get(i).getDemanda() > 0) estacOver.add(i);
+            else estacUnder.add(i);
         }
-        
+        bicisFaltanTotal = estacUnder.size();
+        bicisSobranTotal = estacOver.size();        
     }
 
 }

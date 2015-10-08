@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  */
 public class Bicing {
     public static Estaciones e;
+    public static Estaciones momentaneo;
     public static int furgos = 5, bicis = 1250, estac = 25;
     /**
      * @param args the command line arguments
@@ -31,13 +32,16 @@ public class Bicing {
     public static void main(String[] args) {
         //Para generar los escenarios deberéis hacer 
         //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
-        e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1);
+        e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
+        momentaneo = (Estaciones)e.clone();
         Estado estatInicial = new EstadoInicial(e, furgos, bicis);
         BicingHillClimbingSearch(estatInicial);
         BicingSimulatedAnnealingSearch(estatInicial);
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial){
+        System.out.println("\nHill Climbing search:");
+        System.out.print("------");
         try {
             Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunction());
@@ -52,6 +56,8 @@ public class Bicing {
     }
     
     private static void BicingSimulatedAnnealingSearch(Estado estatInicial){
+        System.out.println("\n\nSimulated Annealing search:");
+        System.out.print("------");
         try {
             Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunction());
@@ -78,9 +84,10 @@ public class Bicing {
     }
     
     private static void printActions(List actions) {
-        for (Object action1 : actions) {
+        /*for (Object action1 : actions) {
             System.out.println(action1);
-        }
+        }*/
+        System.out.println(actions.get(actions.size()-1));
         /*actions.stream().map((action1) -> (String) action1).forEach((action) -> {
                 System.out.println(action);
         });*/

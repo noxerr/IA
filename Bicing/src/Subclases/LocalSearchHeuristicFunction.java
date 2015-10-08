@@ -6,6 +6,7 @@
 
 package Subclases;
 
+import MainClasses.Estado;
 import aima.search.framework.HeuristicFunction;
 /**
  *
@@ -21,7 +22,9 @@ div es la división entera. Tener en cuenta las bicis EN EL MOMENTO CONCRETO que
     */
     @Override
     public double getHeuristicValue(Object o) {
-        return 0;
+        //calcular coste mirando la diferencia d bicis actual con la vieja en cada estacion
+        return ((Estado) o).renta;
+        //return -((Estado) o).bicisFaltanTotal;
     }
 
 }

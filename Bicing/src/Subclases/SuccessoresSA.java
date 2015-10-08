@@ -5,7 +5,9 @@
  */
 package Subclases;
 
+import MainClasses.Bicing;
 import MainClasses.Estado;
+import MainClasses.Operadores;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
@@ -29,6 +31,29 @@ public class SuccessoresSA implements SuccessorFunction{
         LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
         
         Random myRandom=new Random();
+        int i, renta = oldEstado.renta;
+        if (oldEstado.estacUnder.size() > 0) {
+            i = myRandom.nextInt(oldEstado.estacUnder.size()-1);
+            int j = myRandom.nextInt(oldEstado.vecCamiones.size()-1);
+            int k = oldEstado.vecCamiones.get(j).origen;
+            if(k == -1) {
+                if (oldEstado.estacOver.size() > 0) {
+                    k = myRandom.nextInt(oldEstado.estacOver.size()/2);
+                    k = oldEstado.estacOver.get(k);
+                }
+                else k = 0;
+            }
+            if (k == 0) renta = 100000;
+            else{
+                /*Operadores.llenarEstacion(oldEstado.vecCamiones.get(j),
+                        Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getNumBicicletasNoUsadas(), 
+                                    oldEstado.estacUnder.get(i),k);*/
+                renta = -Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getNumBicicletasNoUsadas() - 
+                                Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getDemanda();
+            }
+                    
+        }
+        else renta = 100000;
         /*int i,j;
         
         // Nos ahorramos generar todos los sucesores escogiendo un par de ciudades al azar
@@ -40,10 +65,12 @@ public class SuccessoresSA implements SuccessorFunction{
        } while (i==j);*/
         
         
-        Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, oldEstado.difBicis);
+        Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
+                oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta+=renta);
         //aplicamos ops en esta linea
-        double v = LSHF.getHeuristicValue(nuevoEstado);
-        String S = "Operacion:" + " " + 1 + " " + 2 + " Coste(" + v + ") ---> " + nuevoEstado.toString();
+        double v = -LSHF.getHeuristicValue(nuevoEstado);
+        String S = "Operacion:" + " " + 1 + " " + 2 + " Renta(" + v + ") ---> " 
+                + nuevoEstado.toString();
         retVal.add(new Successor(S, nuevoEstado));
         return retVal;
     }

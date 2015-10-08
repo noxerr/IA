@@ -15,25 +15,36 @@ import java.util.List;
  */
 public class Estado {
     public List<Furgoneta> vecCamiones;
-    public ArrayList<Estacion> estacOver, estacUnder;
-    public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
+    public ArrayList<Integer> estacOver, estacUnder;
+    public int bicisFaltanTotal, bicisSobranTotal, renta;
+    //public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
     public Estado(int numCamiones){
-        this(new ArrayList(numCamiones), new ArrayList(), new ArrayList(), 0);
+        this(new ArrayList(numCamiones), new ArrayList(), new ArrayList(), 0, 0, 0);
     }
     
-    public Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
-            int difBicis){
+    public Estado (List<Furgoneta> lc, ArrayList<Integer> over, ArrayList<Integer> under, 
+            int bicisFaltan, int bicisSobran, int renta){
         this.vecCamiones = lc;
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
-        this.difBicis = difBicis;
+        this.bicisFaltanTotal = bicisFaltan;
+        this.bicisSobranTotal = bicisSobran;
+        this.renta = renta;
+        if (this.vecCamiones.size() < 1) {
+            int i = 0;
+            while(i < Bicing.furgos){
+                this.vecCamiones.add(new Furgoneta());
+                i++;
+            }
+        }
     }  
     
     @Override
     public String toString() {
         //aqui imprimir el estado bien
-        String retVal = "| Diferencia entre bicis \npositivas y negativas: " + difBicis;
+        String retVal = "| Diferencia entre bicis \npositivas: " + bicisSobranTotal + ". Y negativas: "
+                + bicisFaltanTotal + "\nRenta total: " + -renta;
         return retVal;
     }
 }
