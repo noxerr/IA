@@ -18,11 +18,8 @@ public class Estado {
     public ArrayList<Estacion> estacOver, estacUnder;
     public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
-    public Estado(){
-        vecCamiones = new ArrayList();
-        estacOver = new ArrayList();
-        estacUnder = new ArrayList();
-        difBicis = 0;
+    public Estado(int numCamiones){
+        this(new ArrayList(numCamiones), new ArrayList(), new ArrayList(), 0);
     }
     
     public Estado (List<Furgoneta> lc, ArrayList<Estacion> over, ArrayList<Estacion> under, 
@@ -31,22 +28,12 @@ public class Estado {
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
         this.difBicis = difBicis;
+    }  
+    
+    @Override
+    public String toString() {
+        //aqui imprimir el estado bien
+        String retVal = "| Diferencia entre bicis \npositivas y negativas: " + difBicis;
+        return retVal;
     }
-    
-    /*public int getBicisSobran(){
-        return this.bicisSobranTotal;
-    }
-    
-    public int getBicisFaltan(){
-        return this.bicisFaltanTotal;
-    }
-    
-    public int setBicisSobran(int bicis){
-        return this.bicisSobranTotal = bicis;
-    }
-    
-    public int setBicisFaltan(int bicis){
-        return this.bicisFaltanTotal = bicis;
-    }*/    
-    
 }

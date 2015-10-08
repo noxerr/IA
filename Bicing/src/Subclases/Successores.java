@@ -30,8 +30,7 @@ public class Successores implements SuccessorFunction{
         
         Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, oldEstado.difBicis);
         double v = LSHF.getHeuristicValue(nuevoEstado);
-        String operacionAplicada = "Nada: " + v;
-        retVal.add(new Successor(operacionAplicada, nuevoEstado));
+        retVal.add(new Successor("", nuevoEstado));
         return retVal;
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos
         //ProbTSPSuccessorFunction b;

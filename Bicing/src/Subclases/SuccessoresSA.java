@@ -43,8 +43,8 @@ public class SuccessoresSA implements SuccessorFunction{
         Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, oldEstado.difBicis);
         //aplicamos ops en esta linea
         double v = LSHF.getHeuristicValue(nuevoEstado);
-        String operacionAplicada = "Nada: " + v;
-        retVal.add(new Successor(operacionAplicada, nuevoEstado));
+        String S = "Operacion:" + " " + 1 + " " + 2 + " Coste(" + v + ") ---> " + nuevoEstado.toString();
+        retVal.add(new Successor(S, nuevoEstado));
         return retVal;
     }
     

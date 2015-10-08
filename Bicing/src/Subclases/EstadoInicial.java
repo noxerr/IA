@@ -9,34 +9,27 @@ package Subclases;
 import IA.Bicing.Estacion;
 import IA.Bicing.Estaciones;
 import MainClasses.Estado;
-import MainClasses.Furgoneta;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Ferran
  */
-public class EstadoInicial{
-    Estado e;
-    public EstadoInicial(Estaciones e) {
-        e = new Estado();
+public class EstadoInicial extends Estado{
+
+    public EstadoInicial(Estaciones e, int numCamiones, int numBicis) {
+        super(numCamiones);
+        generaEstadoInicial(e);
     }
-    
-    public Estado generaEstadoInicial(Estaciones e){  
-        ArrayList<Estacion> over = new ArrayList();
-        ArrayList<Estacion> under = new ArrayList();
-        int bicisOver_Under = 0;
+
+    private void generaEstadoInicial(Estaciones e){  
         int aux;
         for (Estacion e1 : e) {
             aux = e1.getNumBicicletasNext()-e1.getDemanda();
-            if (aux > 0) over.add(e1);
-            else under.add(e1);
-            bicisOver_Under += aux;
+            if (aux > 0) estacOver.add(e1);
+            else estacUnder.add(e1);
+            difBicis += aux;
         }
-        Estado ei = new Estado(new ArrayList(), over, under, bicisOver_Under);
-        return ei;
+        
     }
-
 
 }

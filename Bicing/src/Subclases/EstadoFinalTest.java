@@ -15,7 +15,7 @@ public class EstadoFinalTest implements GoalTest{
 
     @Override
     public boolean isGoalState(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false; //siempre retornara falso xk no podemos saber si hemos llegado al final
     }
     
 }

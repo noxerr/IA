@@ -5,12 +5,16 @@ import Subclases.EstadoFinalTest;
 import Subclases.EstadoInicial;
 import Subclases.LocalSearchHeuristicFunction;
 import Subclases.Successores;
+import Subclases.SuccessoresSA;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
 import aima.search.informed.HillClimbingSearch;
 import aima.search.informed.SimulatedAnnealingSearch;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,89 +24,76 @@ import java.util.logging.Logger;
  */
 public class Bicing {
     public static Estaciones e;
-    public static int Furgos = 5;
+    public static int furgos = 5, bicis = 1250, estac = 25;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //Para generar los escenarios deberéis hacer 
         //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
-        e = new Estaciones(25, 1250, Estaciones.EQUILIBRIUM, 1);
-        
-        //ArrayList<Estacion> over = new ArrayList();
-        //ArrayList<Estacion> under = new ArrayList();
-        //int bicisOver_Under = 0;
-        //int aux;
-        //for (Estacion e1 : e) {
-            //aux = e1.getNumBicicletasNext()-e1.getDemanda();
-            //if (aux > 0) over.add(e1);
-            //else under.add(e1);
-            //bicisOver_Under += aux;
-        //}
-        //Estado estatInicial = new Estado(new ArrayList(), over, under, bicisOver_Under);
-        Estado estatInicial = new EstadoInicial(e);
-        Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(), new LocalSearchHeuristicFunction());
-        Search searchHClimbing = new HillClimbingSearch();
-        Search searchSAnnealing = new SimulatedAnnealingSearch();
+        e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1);
+        Estado estatInicial = new EstadoInicial(e, furgos, bicis);
+        BicingHillClimbingSearch(estatInicial);
+        BicingSimulatedAnnealingSearch(estatInicial);
+    }
+    
+    private static void BicingHillClimbingSearch(Estado estatInicial){
         try {
+            Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunction());
+            Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
+            System.out.println();
+            printActions(agent.getActions());
+            printInstrumentation(agent.getInstrumentation());
         } catch (Exception ex) {
             Logger.getLogger(Bicing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    private static void BicingSimulatedAnnealingSearch(Estado estatInicial){
+        try {
+            Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunction());
+            //int steps, slitter (t max), k, lambda
+            Search searchSAnnealing = new SimulatedAnnealingSearch(2000, 100, 5, 0.001);
+            //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
+            SearchAgent agent = new SearchAgent(problem, searchSAnnealing);
+            System.out.println();
+            printActions(agent.getActions());
+            printInstrumentation(agent.getInstrumentation());
+        } catch (Exception ex) {
+            Logger.getLogger(Bicing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void printInstrumentation(Properties properties) {
+        Iterator keys = properties.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            String property = properties.getProperty(key);
+            System.out.println(key + " : " + property);
+        }
+        
+    }
+    
+    private static void printActions(List actions) {
+        for (Object action1 : actions) {
+            System.out.println(action1);
+        }
+        /*actions.stream().map((action1) -> (String) action1).forEach((action) -> {
+                System.out.println(action);
+        });*/
+    }
+    
 }
 
-/*
-Estacion:
-//coordenadas
-int x, y;
-//número de bicicletas que no se moverán en la hora actual
-int BicisNoMueven
-//el número de bicicletas que habrá al ﬁnal de la hora
-int bicisQueVendran
-//demanda prevista de bicicletas para la próxima hora
-int Demanda
- 
-Estats:
-
-Struct camio{
-     //IdD1 Desti1
-     //IdD2 Desti2
-     //IdS ESortida
-     //NumBicis Numero de bicis que porta el camio
-     int idd1, idd2, ids, NumBicis;
-}
 
 
-vector<camio>[numCamions] vecCamions;
-vector<Estacion>[numEstacions] vecEstacions;
 
 
-EstatInicial:
 
-Ordenem vecEstacions de menor a major (-x,-y,…,a,b) 
-Situem a cada estacio començant per vecEstacions[0]
-//Situem a cada camió una estació de sortida on sobren bicis
-for (int i=0; i<vecEstacions.size() and vecEstacions[i]<0 and i<vecCamions; i++){
-	vecCamions[i].ESortida = vecEstacions[i].coordenades;
-	vecCamions[i].NumBicis = abs(vecEstacions[i]);
-}
-//Escollim el primer desti de cada camio
-for(int i = 0; i<vecCamions.size() and vecEstacions[vecEstacions.size()-i]>0;i++){
-	vecCamions[i].Desti1 = vecEstacions[vecEstacions.size()-i];
-	//el camio porta 30b i la estacio ni falten 8 Then aux=30+(-8)=22
-	int aux = vecCamions[i].NumBicis+vecEstacions[vecEstacions.size()-i];
-vecEstacions[vecEstacions.size()-i]=vecCamions[i].NumBicis-aux;
-vecCamions[i].NumBicis=aux;	
-}
-ordena vecEstacions;
-//Escollim el segon desti de cada camio
-for(int i = 0; i<vecCamions.size() and vecEstacions[vecEstacions.size()-i]>0;i++){
-	vecCamions[i].Desti2 = vecEstacions[vecEstacions.size()-i];
-	//el camio porta 30b i la estacio ni falten 8 Then aux=30+(-8)=22
-	int aux = vecCamions[i].NumBicis+vecEstacions[vecEstacions.size()-i];
-vecEstacions[vecEstacions.size()-i]=vecCamions[i].NumBicis-aux;
-vecCamions[i].NumBicis=aux;	
 
-*/
+
+
+
