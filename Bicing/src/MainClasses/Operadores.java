@@ -37,8 +37,8 @@ public class Operadores {
     public static void setDestino1(Furgoneta c, int estacionDest, ArrayList<Integer> difDemanda){
         c.dest1 = estacionDest; 
         if (c.NumBicis > -difDemanda.get(estacionDest)) {
-            difDemanda.set(estacionDest, 0);//ja no faltan bicis
             c.NumBicis += difDemanda.get(estacionDest);
+            difDemanda.set(estacionDest, 0);//ja no faltan bicis
         }
         else {
             difDemanda.set(estacionDest, difDemanda.get(estacionDest) + c.NumBicis);//ja no faltan bicis

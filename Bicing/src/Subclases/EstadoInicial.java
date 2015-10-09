@@ -40,7 +40,7 @@ public class EstadoInicial extends Estado{
             aux2 = aux2 > 0 ? 0 : aux2; //aux sera negatiu o 0 ja que així podem contar els diners que guanyem
             difDemandaBicis.add(aux2);
         }
-        Bicing.difDemandaInicial = (ArrayList<Integer>) difDemandaBicis.clone();
+        Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
             if (aux > 0){
@@ -59,6 +59,5 @@ public class EstadoInicial extends Estado{
             }
         }
         System.out.println("..: " + super.toString());
-        
     }
 }

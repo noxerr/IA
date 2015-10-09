@@ -39,11 +39,14 @@ public class Successores implements SuccessorFunction{
                         oldEstado.difDemandaBicis, oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta);
 
                     int aux = nuevoEstado.estacUnder.get(j); //posicion de la estacion en el vector Estaciones
+                    System.out.println("----+" + nuevoEstado.difDemandaBicis.get(aux));
                     Operadores.setDestino1(nuevoEstado.vecCamiones.get(i), aux, 
                             nuevoEstado.difDemandaBicis);
+                            System.out.println("----+" +j+ nuevoEstado.difDemandaBicis.get(aux) + "\n\n");
                     System.out.println("dspues de op: " + nuevoEstado.difDemandaBicis + "\n");
                     if (nuevoEstado.difDemandaBicis.get(aux) == 0) nuevoEstado.estacUnder.remove(j);
                     nuevoEstado.renta += Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
+                    //nuevoEstado.renta += oldEstado.difDemandaBicis.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
                     double v = -LSHF.getHeuristicValue(nuevoEstado);
                     String S = "Operacion:" + " " + i + " " + j + " Renta(" + v + ") ---> " 
                             + nuevoEstado.toString();
