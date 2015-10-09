@@ -35,7 +35,7 @@ public class Bicing {
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
         momentaneo = (Estaciones)e.clone();
         Estado estatInicial = new EstadoInicial(e, furgos, bicis);
-        BicingHillClimbingSearch(estatInicial);
+        BicingHillClimbingSearch(estatInicial);//
         //BicingSimulatedAnnealingSearch(estatInicial);
     }
     
