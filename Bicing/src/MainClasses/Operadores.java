@@ -33,12 +33,12 @@ public class Operadores {
         //vieja.setNumBicicletasNoUsadas(vieja.getNumBicicletasNoUsadas()-bicisQuePuedeDescargar);
     }
     
-    public static void setDestino1(Furgoneta c, Estacion e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
+    public static void setDestino1(Furgoneta c, int j){
+        c.dest1 = j; 
     }
     
-    public static void setDestino2(Furgoneta c, Estacion e){
-        //c.set_Desti1(e.getCoordX(), e.getCoordY());
+    public static void setDestino2(Furgoneta c, int j){
+        c.dest2 = j; 
     }
     
     //añadir op switch origen o switch destinos o commutar destino1/2 

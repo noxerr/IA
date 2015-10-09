@@ -5,7 +5,9 @@
  */
 package Subclases;
 
+import MainClasses.Bicing;
 import MainClasses.Estado;
+import MainClasses.Operadores;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
@@ -28,15 +30,18 @@ public class Successores implements SuccessorFunction{
         ArrayList retVal = new ArrayList();
         Estado oldEstado = (Estado) o;
         LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < oldEstado.vecCamiones.size(); i++){
+        for(int j = 0; j < Bicing.e.size(); j++){
             Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
-                    oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta);
+                oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta);
+            Operadores.setDestino1(nuevoEstado.vecCamiones.get(i), j);
             nuevoEstado.renta = -(int) (Math.random() * 100);
             double v = -LSHF.getHeuristicValue(nuevoEstado);
             String S = "Operacion:" + " " + 1 + " " + 2 + " Renta(" + v + ") ---> " 
                     + nuevoEstado.toString();
             //si heuristica es peor que el mejor, no anadir, como mucho un 2o mejor
             retVal.add(new Successor(S, nuevoEstado));
+        }
         }
         return retVal;
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos

@@ -19,7 +19,7 @@ public class Furgoneta {
      //NumBicis Numero de bicis que porta el camio
      public int origen, dest1, dest2;
      public int NumBicis;
-     public int maxBicis = 30;
+     public int recorrido = 0;
 
     public Furgoneta(){
       origen = -1;

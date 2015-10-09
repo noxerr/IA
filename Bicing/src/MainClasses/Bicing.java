@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class Bicing {
     public static Estaciones e;
     public static Estaciones momentaneo;
-    public static int furgos = 5, bicis = 1250, estac = 25;
+    public static int furgos = 5, bicis = 1250, estac = 25, maxBici = 30;
     /**
      * @param args the command line arguments
      */
@@ -36,7 +36,7 @@ public class Bicing {
         momentaneo = (Estaciones)e.clone();
         Estado estatInicial = new EstadoInicial(e, furgos, bicis);
         BicingHillClimbingSearch(estatInicial);
-        BicingSimulatedAnnealingSearch(estatInicial);
+        //BicingSimulatedAnnealingSearch(estatInicial);
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial){
