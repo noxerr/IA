@@ -6,6 +6,7 @@
 package MainClasses;
 
 import IA.Bicing.Estacion;
+import java.util.ArrayList;
 
 
 /**
@@ -33,8 +34,18 @@ public class Operadores {
         //vieja.setNumBicicletasNoUsadas(vieja.getNumBicicletasNoUsadas()-bicisQuePuedeDescargar);
     }
     
-    public static void setDestino1(Furgoneta c, int j){
-        c.dest1 = j; 
+    public static void setDestino1(Furgoneta c, int estacionDest, ArrayList<Integer> difDemanda){
+        c.dest1 = estacionDest; 
+        if (c.NumBicis > -difDemanda.get(estacionDest)) {
+            difDemanda.set(estacionDest, 0);//ja no faltan bicis
+            c.NumBicis += difDemanda.get(estacionDest);
+        }
+        else {
+            System.out.println("entra en esta mierda: " + difDemanda.get(estacionDest));
+            difDemanda.set(estacionDest, difDemanda.get(estacionDest) + c.NumBicis);//ja no faltan bicis
+            System.out.println("saleee : " + difDemanda.get(estacionDest) + "\n");
+            c.NumBicis = 0;
+        }
     }
     
     public static void setDestino2(Furgoneta c, int j){

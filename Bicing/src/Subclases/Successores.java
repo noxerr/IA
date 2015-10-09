@@ -31,17 +31,32 @@ public class Successores implements SuccessorFunction{
         Estado oldEstado = (Estado) o;
         LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
         for (int i = 0; i < oldEstado.vecCamiones.size(); i++){
-        for(int j = 0; j < Bicing.e.size(); j++){
-            Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
-                oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta);
-            Operadores.setDestino1(nuevoEstado.vecCamiones.get(i), j);
-            nuevoEstado.renta = -(int) (Math.random() * 100);
-            double v = -LSHF.getHeuristicValue(nuevoEstado);
-            String S = "Operacion:" + " " + 1 + " " + 2 + " Renta(" + v + ") ---> " 
-                    + nuevoEstado.toString();
-            //si heuristica es peor que el mejor, no anadir, como mucho un 2o mejor
-            retVal.add(new Successor(S, nuevoEstado));
-        }
+         double vMax = 0;
+        //for(int j = 0; j < Bicing.e.size(); j++){
+            if (oldEstado.vecCamiones.get(i).dest1 == -1){ //si la furgo no tenia desti1 encara
+                for(int j = 0; j < oldEstado.estacUnder.size(); j++){
+                    Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
+                        oldEstado.difDemandaBicis, oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta);
+
+                    int aux = nuevoEstado.estacUnder.get(j); //posicion de la estacion en el vector Estaciones
+                    Operadores.setDestino1(nuevoEstado.vecCamiones.get(i), aux, 
+                            nuevoEstado.difDemandaBicis);
+                    //System.out.println("dspues de saliir: " + nuevoEstado.difDemandaBicis + "\n");
+                    if (nuevoEstado.difDemandaBicis.get(aux) == 0) nuevoEstado.estacUnder.remove(j);
+                    nuevoEstado.renta += Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
+                    double v = -LSHF.getHeuristicValue(nuevoEstado);
+                    String S = "Operacion:" + " " + i + " " + j + " Renta(" + v + ") ---> " 
+                            + nuevoEstado.toString();
+                    //si heuristica es peor que el mejor, no anadir, como mucho un 2o mejor
+                    if (v > vMax) {
+                        retVal.add(new Successor(S, nuevoEstado));
+                        vMax = v;
+                        System.out.println("d---irasdasd: " + LSHF.getHeuristicValue(nuevoEstado) + "\n" + (Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux)));
+                    System.out.println("---iir: " + nuevoEstado.renta + "\n");
+                    }
+                    //System.out.println(nuevoEstado.toString());
+                }
+            }
         }
         return retVal;
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos

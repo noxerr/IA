@@ -48,8 +48,8 @@ public class SuccessoresSA implements SuccessorFunction{
                 /*Operadores.llenarEstacion(oldEstado.vecCamiones.get(j),
                         Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getNumBicicletasNoUsadas(), 
                                     oldEstado.estacUnder.get(i),k);*/
-                renta = -Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getNumBicicletasNoUsadas() - 
-                                Bicing.momentaneo.get(oldEstado.estacOver.get(k)).getDemanda();
+                renta = -Bicing.e.get(oldEstado.estacOver.get(k)).getNumBicicletasNoUsadas() - 
+                                Bicing.e.get(oldEstado.estacOver.get(k)).getDemanda();
             }
                     
         }
@@ -66,7 +66,7 @@ public class SuccessoresSA implements SuccessorFunction{
         
         
         Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
-                oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta+=renta);
+                oldEstado.difDemandaBicis, oldEstado.bicisFaltanTotal, oldEstado.bicisSobranTotal, oldEstado.renta+=renta);
         //aplicamos ops en esta linea
         double v = -LSHF.getHeuristicValue(nuevoEstado);
         String S = "Operacion:" + " " + 1 + " " + 2 + " Renta(" + v + ") ---> " 
