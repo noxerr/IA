@@ -41,9 +41,7 @@ public class Operadores {
             c.NumBicis += difDemanda.get(estacionDest);
         }
         else {
-            System.out.println("entra en esta mierda: " + difDemanda.get(estacionDest));
             difDemanda.set(estacionDest, difDemanda.get(estacionDest) + c.NumBicis);//ja no faltan bicis
-            System.out.println("saleee : " + difDemanda.get(estacionDest) + "\n");
             c.NumBicis = 0;
         }
     }

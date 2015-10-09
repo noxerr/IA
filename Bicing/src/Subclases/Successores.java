@@ -41,7 +41,7 @@ public class Successores implements SuccessorFunction{
                     int aux = nuevoEstado.estacUnder.get(j); //posicion de la estacion en el vector Estaciones
                     Operadores.setDestino1(nuevoEstado.vecCamiones.get(i), aux, 
                             nuevoEstado.difDemandaBicis);
-                    //System.out.println("dspues de saliir: " + nuevoEstado.difDemandaBicis + "\n");
+                    System.out.println("dspues de op: " + nuevoEstado.difDemandaBicis + "\n");
                     if (nuevoEstado.difDemandaBicis.get(aux) == 0) nuevoEstado.estacUnder.remove(j);
                     nuevoEstado.renta += Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
                     double v = -LSHF.getHeuristicValue(nuevoEstado);
@@ -51,8 +51,6 @@ public class Successores implements SuccessorFunction{
                     if (v > vMax) {
                         retVal.add(new Successor(S, nuevoEstado));
                         vMax = v;
-                        System.out.println("d---irasdasd: " + LSHF.getHeuristicValue(nuevoEstado) + "\n" + (Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux)));
-                    System.out.println("---iir: " + nuevoEstado.renta + "\n");
                     }
                     //System.out.println(nuevoEstado.toString());
                 }
