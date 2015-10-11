@@ -89,10 +89,10 @@ public class Bicing {
     }
     
     private static void printActions(List actions) {
-        for (Object action1 : actions) {
+        /*for (Object action1 : actions) {
             System.out.println(action1);
-        }
-        //if (actions.size() > 0) System.out.println(actions.get(actions.size()-1));
+        }*/
+        if (actions.size() > 0) System.out.println(actions.get(actions.size()-1));
         /*actions.stream().map((action1) -> (String) action1).forEach((action) -> {
                 System.out.println(action);
         });*/
