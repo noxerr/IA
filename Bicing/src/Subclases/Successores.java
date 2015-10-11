@@ -50,7 +50,7 @@ public class Successores implements SuccessorFunction{
                     //System.out.println("Final:   " + -nuevoEstado.difDemandaBicis.get(aux) + " bicis");        
                             //System.out.println("----+" +j+ nuevoEstado.difDemandaBicis.get(aux) + "\n\n");
                     //System.out.println("Demanda actual: " + nuevoEstado.difDemandaBicis + "\n");
-                    // Quitamos estación si la demanda ha sido cubierta
+                    // Quitamos estación si la demanda ha sido cubierta 
                     if (nuevoEstado.difDemandaBicis.get(aux) == 0) nuevoEstado.estacUnder.remove(j);
                     nuevoEstado.renta += Bicing.difDemandaInicial.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
                     //nuevoEstado.renta += oldEstado.difDemandaBicis.get(aux)-nuevoEstado.difDemandaBicis.get(aux);
