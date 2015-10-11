@@ -1,4 +1,5 @@
 /Bicing/nbproject/
+<<<<<<< HEAD
 
 /Bicing/dist/
 
@@ -7,3 +8,9 @@
 /Bicing/build.xml
 
 /Bicing/manifest.mf
+=======
+/Bicing/dist/
+/Bicing/build/
+/Bicing/build.xml
+/Bicing/manifest.mf
+>>>>>>> c84bdca64ba17b02cd7b865165dc737d36aa9fca
