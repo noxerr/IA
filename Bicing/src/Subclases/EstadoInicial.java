@@ -43,11 +43,11 @@ public class EstadoInicial extends Estado{
         Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
-            if (aux > 0){
+            if (aux >= 0){
                 if(k < Bicing.furgos){
                     vecCamiones.get(k).origen = i;
-                    vecCamiones.get(k).NumBicis = aux<Bicing.maxBici?aux:Bicing.maxBici;
-                    System.out.println("i: " + i + ". get: " + vecCamiones.get(k).origen + ". bicis: " + vecCamiones.get(k).NumBicis);
+                    vecCamiones.get(k).numBicis = aux<Bicing.maxBici?aux:Bicing.maxBici;
+                    System.out.println("i: " + i + ". get: " + vecCamiones.get(k).origen + ". bicis: " + vecCamiones.get(k).numBicis);
                     k++;
                 }
                 estacOver.add(i);
@@ -58,6 +58,7 @@ public class EstadoInicial extends Estado{
                 bicisFaltanTotal += aux;
             }
         }
-        System.out.println("..: " + super.toString());
+        System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
+        System.out.println("Estado inicial\n----------------\n " + super.toString());
     }
 }

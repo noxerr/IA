@@ -13,16 +13,35 @@ import IA.Bicing.Estacion;
  * @author Ferran
  */
 public class Furgoneta {
+     //IdD1 Desti1
+     //IdD2 Desti2
+     //IdS ESortida
+     //NumBicis Numero de bicis que porta el camio
      public int origen, dest1, dest2;
-     public int NumBicis;
+     public int numBicis;
      public int recorrido = 0;
 
     public Furgoneta(){
       origen = -1;
       dest1 = -1;
       dest2 = -1;
-      NumBicis= 0;
-    }    
+      numBicis= 0;
+    }
+    
+    @Override
+    public String toString() {
+        return ("Número de bicis" + numBicis + " ");
+    }
+    
+    @Override
+    public Furgoneta clone() {
+        Furgoneta f = new Furgoneta();
+        f.origen = this.origen;
+        f.dest1 = this.dest1;
+        f.dest2 = this.dest2;
+        f.numBicis = this.numBicis;
+        return f;
+    }
    
 }
 
