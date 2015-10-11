@@ -25,7 +25,13 @@ public class Estado {
     
     public Estado (ArrayList<Furgoneta> lc, ArrayList<Integer> over, ArrayList<Integer> under, 
             ArrayList<Integer> difDemanda, int bicisFaltan, int bicisSobran, int renta){
-        this.vecCamiones = new ArrayList(lc);
+
+        this.vecCamiones = new ArrayList<Furgoneta>();
+        for(Furgoneta f: lc){
+            this.vecCamiones.add(f.clone());
+        }
+
+       
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
         this.difDemandaBicis = new ArrayList(difDemanda);
@@ -38,7 +44,7 @@ public class Estado {
     public String toString() {
         //aqui imprimir el estado bien
         String retVal = "\n|Renta total: " + -renta + "\nCamiones destino: ";
-        for (Furgoneta f : vecCamiones) retVal += "bicis: " + f.NumBicis + ". Dest: " +  f.dest1 + " | ";
+        for (Furgoneta f : vecCamiones) retVal += "bicis: " + f.numBicis + ". Dest: " +  f.dest1 + " | ";
         retVal += "\nAhora difDemanda: ";
         for (int f : difDemandaBicis) retVal += f + " | ";
         return retVal;
