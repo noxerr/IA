@@ -13,10 +13,6 @@ import IA.Bicing.Estacion;
  * @author Ferran
  */
 public class Furgoneta {
-     //IdD1 Desti1
-     //IdD2 Desti2
-     //IdS ESortida
-     //NumBicis Numero de bicis que porta el camio
      public int origen, dest1, dest2;
      public int NumBicis;
      public int recorrido = 0;
