@@ -49,7 +49,9 @@ public class Operadores {
     public static void setDestino2(Furgoneta c, int j){
         c.dest2 = j; 
     }
-    
+    public static void setOrigen(Furgoneta c, int j){
+        c.origen = j;
+    }
     //añadir op switch origen o switch destinos o commutar destino1/2 
     
 }
