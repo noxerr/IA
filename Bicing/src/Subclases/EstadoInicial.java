@@ -45,11 +45,11 @@ public class EstadoInicial extends Estado{
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
             if (aux > 0){
                 estacOver.add(i);
-                bicisSobranTotal += aux;
+                sumaSobraFalta += aux;
             }
             else if(aux < 0){
                 estacUnder.add(i);
-                bicisFaltanTotal += aux;
+                sumaSobraFalta += -aux;
             }
         }
         //System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
