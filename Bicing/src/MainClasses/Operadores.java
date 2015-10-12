@@ -28,20 +28,22 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
     */
     
     // Actualiza demanda y resta bicis
-    public static void setDestino1(Furgoneta c, int estacionDest, ArrayList<Integer> difDemanda){
+    public static void setDestino1(Furgoneta c, int estacionDest, Estado es){
         c.dest1 = estacionDest; 
-        if (c.numBicis > -difDemanda.get(estacionDest)) {
-            c.numBicis += difDemanda.get(estacionDest);
-            difDemanda.set(estacionDest, 0);//ja no faltan bicis
+        if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
+            c.numBicis += es.difDemandaBicis.get(estacionDest);
+            es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
+            es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
         }
         else {
-            difDemanda.set(estacionDest, difDemanda.get(estacionDest) + c.numBicis);//ja no faltan bicis
+            es.sumaSobraFalta -= c.numBicis;
+            es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
     }
     
-    public static void setDestino2(Furgoneta c, int j){
-        c.dest2 = j; 
+    public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
+        c.dest2 = estacionDest; 
     }
     public static void setOrigen(Furgoneta c, int j){
         c.origen = j;
