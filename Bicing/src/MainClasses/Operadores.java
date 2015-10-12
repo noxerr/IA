@@ -42,10 +42,15 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
-        c.recorrido += es.calculaDistancia(Bicing.e.get(c.origen).getCoordX(),
-                                            Bicing.e.get(c.origen).getCoordY(),
-                                            Bicing.e.get(estacionDest).getCoordX(),
-                                            Bicing.e.get(estacionDest).getCoordY());
+        // Ganamos un poco en rendimiento haciéndolo de este modo en vez de invocando 4 veces a obtener estacion
+        Estacion e = Bicing.e.get(c.origen);
+        int xOrigen = e.getCoordX();
+        int yOrigen = e.getCoordY();
+        e = Bicing.e.get(estacionDest);
+        c.recorrido += es.calculaDistancia(xOrigen,
+                                            yOrigen,
+                                            e.getCoordX(),
+                                            e.getCoordY());
     }
     
     public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
@@ -62,10 +67,14 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
-        c.recorrido += es.calculaDistancia(Bicing.e.get(c.dest1).getCoordX(),
-                                            Bicing.e.get(c.dest1).getCoordY(),
-                                            Bicing.e.get(estacionDest).getCoordX(),
-                                            Bicing.e.get(estacionDest).getCoordY());
+        Estacion e = Bicing.e.get(c.origen);
+        int xOrigen = e.getCoordX();
+        int yOrigen = e.getCoordY();
+        e = Bicing.e.get(estacionDest);
+        c.recorrido += es.calculaDistancia(xOrigen,
+                                            yOrigen,
+                                            e.getCoordX(),
+                                            e.getCoordY());
     }
     public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
         c.origen = origen;
