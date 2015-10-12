@@ -42,7 +42,7 @@ public class EstadoInicial extends Estado{
             }
             else if(aux < 0){
                 estacUnder.add(i);
-                sumaSobraFalta += -aux;
+                sumaSobraFalta -= aux;
             }
         }
         //System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
