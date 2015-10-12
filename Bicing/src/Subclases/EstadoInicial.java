@@ -29,16 +29,9 @@ public class EstadoInicial extends Estado{
         for (int i = 0; i < Bicing.furgos; i++){
             this.vecCamiones.add(new Furgoneta());
         }
-        /*
-        Bicing.e.stream().forEach((_item) -> {
-            difDemandaBicis.add(0);
-        });
-        */
-        int aux2;
+        
         for (Estacion e1 : Bicing.e) {
-            aux2 = e1.getNumBicicletasNext()-e1.getDemanda();
-            aux2 = aux2 > 0 ? 0 : aux2; //aux sera negatiu o 0 ja que així podem contar els diners que guanyem
-            difDemandaBicis.add(aux2);
+            difDemandaBicis.add(e1.getNumBicicletasNext()-e1.getDemanda());
         }
         Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
