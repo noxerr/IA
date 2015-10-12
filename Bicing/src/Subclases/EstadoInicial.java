@@ -51,11 +51,11 @@ public class EstadoInicial extends Estado{
                     k++;
                 }
                 estacOver.add(i);
-                bicisSobranTotal += aux;
+                sumaSobraFalta += aux;
             }
             else if(aux < 0){
                 estacUnder.add(i);
-                bicisFaltanTotal += aux;
+                sumaSobraFalta += -aux;
             }
         }
         //System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);

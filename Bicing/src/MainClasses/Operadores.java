@@ -14,25 +14,18 @@ import java.util.ArrayList;
  * @author Dani
  */
 public class Operadores {
-    //Operadores:
-    //Pre: El Camion no esta Cargado
-    //Post: El camion tiene una Estacion Salida i numBicis
-    public static void cargarCamion(Furgoneta c, Estacion e){
-        //c.set_Sortida(e.getCoordX(), e.getCoordY());
-        c.numBicis = e.getNumBicicletasNoUsadas();
-        //falta actualizar estacion
-    }
-    //tener cuidado xk si no cargams todas las bicis k sobran en una estacion, nadie mas las puede cargar
-    public static void restaurarCamion(Furgoneta c, Estacion e, int bicisQueQuiereDejar){
-        //c.set_Sortida(e.getCoordX(), e.getCoordY());
-        c.numBicis += e.getNumBicicletasNoUsadas() > (-c.numBicis) ? (-c.numBicis) : e.getNumBicicletasNoUsadas();
-    }
-    
-    public static void llenarEstacion(Furgoneta c, int bicisQuePuedeDescargar, int destino, int origen){
-        //c.numBicis -= bicisQuePuedeDescargar;
-        //nueva.setDemanda(nueva.getNumBicicletasNext()+bicisQuePuedeDescargar);
-        //vieja.setNumBicicletasNoUsadas(vieja.getNumBicicletasNoUsadas()-bicisQuePuedeDescargar);
-    }
+    /*
+    SetOrigen (camion c, ArrayList<int> difDemandaBicis)
+ha de poner estacion a “usada”
+ha de poner origen al camion (origen relativo al vector de difDemanda que es igual de largo y corresponde al de Estaciones
+ha de actualizar las bicis que quedan en esa estacion que ha cogido, las bicis que tiene ahora el camion (todas las que le sobraban), actualizar la suma de (bicis sobran + bicis faltan) del heuristico, y actualizar la renta (la necesitaremos para saber lo k hemos ganado)
+si la estacion ya tiene un camion k tenga esa d origen le ponemos un 1 en el vector de difDemandaBicis, si tiene un 1 es k no era negativa (xk sino no habriamos puesto un camion de origen ahi)
+
+SetDestino1 (camion c)
+Ha de definir el desti del camió
+ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis que tiene ahora el camion (todas las que le sobraban), actualizar la suma de (bicis sobran + bicis faltan) del heuristico, y actualizar la renta (la necesitaremos para saber lo k hemos ganado)
+
+    */
     
     // Actualiza demanda y resta bicis
     public static void setDestino1(Furgoneta c, int estacionDest, ArrayList<Integer> difDemanda){

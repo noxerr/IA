@@ -16,15 +16,15 @@ import java.util.List;
 public class Estado {
     public ArrayList<Furgoneta> vecCamiones;
     public ArrayList<Integer> estacOver, estacUnder, difDemandaBicis;
-    public int bicisFaltanTotal, bicisSobranTotal, renta;
+    public int renta, sumaSobraFalta;
     //public int difBicis; //Bicis que Sobran en estaciones - bicis que faltan en estaciones
     
     public Estado(int numCamiones){
-        this(new ArrayList(numCamiones), new ArrayList(), new ArrayList(), new ArrayList(), 0, 0, 0);
+        this(new ArrayList(numCamiones), new ArrayList(), new ArrayList(), new ArrayList(), 0, 0);
     }
     
     public Estado (ArrayList<Furgoneta> lc, ArrayList<Integer> over, ArrayList<Integer> under, 
-            ArrayList<Integer> difDemanda, int bicisFaltan, int bicisSobran, int renta){
+            ArrayList<Integer> difDemanda, int renta, int sumaSobraFalta){
 
         this.vecCamiones = new ArrayList<Furgoneta>();
         for(Furgoneta f: lc){
@@ -35,8 +35,7 @@ public class Estado {
         this.estacOver = new ArrayList(over);
         this.estacUnder = new ArrayList(under);
         this.difDemandaBicis = new ArrayList(difDemanda);
-        this.bicisFaltanTotal = bicisFaltan;
-        this.bicisSobranTotal = bicisSobran;
+        this.sumaSobraFalta = sumaSobraFalta;
         this.renta = renta;
     }  
     
