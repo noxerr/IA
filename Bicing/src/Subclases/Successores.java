@@ -38,7 +38,8 @@ public class Successores implements SuccessorFunction{
                                     oldEstado.difDemandaBicis, oldEstado.renta, oldEstado.sumaSobraFalta);
                                 Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
                                         oldEstado.difDemandaBicis);
-                                Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), desti1, nuevoEstado);
+                                Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
+                                        nuevoEstado);
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                     for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
                                         if (desti2 != desti1);

@@ -32,11 +32,13 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
         c.dest1 = estacionDest; 
         if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
             c.numBicis += es.difDemandaBicis.get(estacionDest);
+            es.renta -= es.difDemandaBicis.get(estacionDest);
             es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
             es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
         }
         else {
             es.sumaSobraFalta -= c.numBicis;
+            es.renta += c.numBicis;
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
