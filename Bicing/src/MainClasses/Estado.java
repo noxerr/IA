@@ -49,13 +49,24 @@ public class Estado {
         int recorrido = 0;
         String retVal = "\nRenta total: " + renta + "\nCamiones destino: \n";
         for (Furgoneta f : vecCamiones){ 
+            
             retVal += "bicis: " + 
                     f.numBicis + " Origen: "+ 
                     f.origen +". Dest: " +  
                     f.dest1 + " . Dest2: "+ 
-                    f.dest2 + 
-                    "\n";
+                    f.dest2 + " \t" +
+                    f.recorrido+" \t";
+            /* Chivato distancia recorrida
+            
+            if(f.origen!=-1){
+                    retVal +=Bicing.e.get(f.origen).getCoordX() + ","+Bicing.e.get(f.origen).getCoordY()+ " - " + Bicing.e.get(f.dest1).getCoordX() + ","+Bicing.e.get(f.dest1).getCoordY();
+            }
+            if(f.dest2!=-1){
+                retVal+="\t| "+Bicing.e.get(f.dest2).getCoordX() + ","+Bicing.e.get(f.dest2).getCoordY();
+            }*/
+            retVal +="\n";
             recorrido += f.recorrido;
+            
         }
         retVal += "\nDistancia recorrida: " + recorrido + "\n";
         retVal += "\nAhora difDemanda: ";

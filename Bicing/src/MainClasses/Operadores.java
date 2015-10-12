@@ -67,7 +67,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
-        Estacion e = Bicing.e.get(c.origen);
+        Estacion e = Bicing.e.get(c.dest1);
         int xOrigen = e.getCoordX();
         int yOrigen = e.getCoordY();
         e = Bicing.e.get(estacionDest);
