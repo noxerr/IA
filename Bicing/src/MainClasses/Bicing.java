@@ -26,7 +26,7 @@ public class Bicing {
     public static Estaciones e;
     public static ArrayList<Integer> difDemandaInicial; //diferencia positiva es que sobran bicis
     public static int furgos = 5, bicis = 1250, estac = 25, maxBici = 30;
-    public static Integer EstacionUsada = 60001;
+    public static int EstacionUsada = 60001;
     /**
      * @param args the command line arguments
      */

@@ -32,14 +32,17 @@ public class Successores implements SuccessorFunction{
             if(oldEstado.vecCamiones.get(n).origen == -1){
                 end = true;
                 for(int origen = 0; origen<oldEstado.estacOver.size(); origen++){
-                    if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)) != 60001){
+                    if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)) != Bicing.EstacionUsada){
                         for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
                                 Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
                                     oldEstado.difDemandaBicis, oldEstado.renta, oldEstado.sumaSobraFalta);
-                                Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), origen, 5);
+                                Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
+                                        oldEstado.difDemandaBicis);
                                 Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), desti1, nuevoEstado);
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
-                                    for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){}
+                                    for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
+                                        if (desti2 != desti1);
+                                    }
                                     //Operadores.setDestino2(nuevoEstado.vecCamiones.get(n), desti2, nuevoEstado.difDemandaBicis);
                                 }
                                 double v = -LSHF.getHeuristicValue(nuevoEstado);
