@@ -42,8 +42,8 @@ public class Estado {
     @Override
     public String toString() {
         //aqui imprimir el estado bien
-        String retVal = "\n|Renta total: " + renta + "\nCamiones destino: ";
-        for (Furgoneta f : vecCamiones) retVal += "bicis: " + f.numBicis + ". Dest: " +  f.dest1 + " | ";
+        String retVal = "\n|Renta total: " + renta + "\nCamiones destino: \n";
+        for (Furgoneta f : vecCamiones) retVal += "bicis: " + f.numBicis + " Origen: "+ f.origen +". Dest: " +  f.dest1 + " . Dest2: "+ f.dest2 + "\n";
         retVal += "\nAhora difDemanda: ";
         for (int f : difDemandaBicis) retVal += f + " | ";
         return retVal;

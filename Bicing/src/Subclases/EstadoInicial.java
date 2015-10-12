@@ -45,7 +45,7 @@ public class EstadoInicial extends Estado{
                 sumaSobraFalta -= aux;
             }
         }
-        //System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
+        System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
        // System.out.println("Estado inicial\n----------------\n " + super.toString());
     }
     

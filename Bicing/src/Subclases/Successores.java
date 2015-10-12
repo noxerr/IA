@@ -50,6 +50,7 @@ public class Successores implements SuccessorFunction{
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
                                             String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                                     + nuevoEstado2.toString();
+                                            //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado2.vecCamiones.get(n).origen + " Destino: " + nuevoEstado2.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado2.vecCamiones.get(n).dest2);
                                             retVal.add(new Successor(S, nuevoEstado2)); 
                                         }
                                     }
@@ -58,6 +59,7 @@ public class Successores implements SuccessorFunction{
                                     double v = -LSHF.getHeuristicValue(nuevoEstado);
                                     String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                             + nuevoEstado.toString();
+                                    //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado.vecCamiones.get(n).origen + " Destino: " + nuevoEstado.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado.vecCamiones.get(n).dest2);
                                     retVal.add(new Successor(S, nuevoEstado));    
                                 }
                         }
