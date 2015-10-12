@@ -42,15 +42,24 @@ public class Successores implements SuccessorFunction{
                                         nuevoEstado);
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                     for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
-                                        if (desti2 != desti1) 
-                                            Operadores.setDestino2(nuevoEstado.vecCamiones.get(n), 
-                                                    oldEstado.estacUnder.get(desti2), nuevoEstado);
+                                        if (desti2 != desti1){ 
+                                            Estado nuevoEstado2 = new Estado(nuevoEstado.vecCamiones, nuevoEstado.estacOver, 
+                                                    nuevoEstado.estacUnder, nuevoEstado.difDemandaBicis, nuevoEstado.renta, nuevoEstado.sumaSobraFalta);
+                                            Operadores.setDestino2(nuevoEstado2.vecCamiones.get(n), 
+                                                    oldEstado.estacUnder.get(desti2), nuevoEstado2);
+                                            double v = -LSHF.getHeuristicValue(nuevoEstado2);
+                                            String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
+                                                    + nuevoEstado2.toString();
+                                            retVal.add(new Successor(S, nuevoEstado2)); 
+                                        }
                                     }
                                 }
-                                double v = -LSHF.getHeuristicValue(nuevoEstado);
-                                String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
-                                        + nuevoEstado.toString();
-                                retVal.add(new Successor(S, nuevoEstado));    
+                                else {
+                                    double v = -LSHF.getHeuristicValue(nuevoEstado);
+                                    String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
+                                            + nuevoEstado.toString();
+                                    retVal.add(new Successor(S, nuevoEstado));    
+                                }
                         }
                     }
                 }      
