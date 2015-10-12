@@ -43,7 +43,7 @@ public class EstadoInicial extends Estado{
         Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
-            if (aux >= 0){
+            if (aux > 0){
                 if(k < Bicing.furgos){
                     vecCamiones.get(k).origen = i;
                     vecCamiones.get(k).numBicis = aux<Bicing.maxBici?aux:Bicing.maxBici;
@@ -53,7 +53,7 @@ public class EstadoInicial extends Estado{
                 estacOver.add(i);
                 bicisSobranTotal += aux;
             }
-            else {
+            else if(aux < 0){
                 estacUnder.add(i);
                 bicisFaltanTotal += aux;
             }
