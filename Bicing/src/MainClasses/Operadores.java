@@ -42,7 +42,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
-        es.distancia += es.calculaDistancia(Bicing.e.get(c.origen).getCoordX(),
+        c.recorrido += es.calculaDistancia(Bicing.e.get(c.origen).getCoordX(),
                                             Bicing.e.get(c.origen).getCoordY(),
                                             Bicing.e.get(estacionDest).getCoordX(),
                                             Bicing.e.get(estacionDest).getCoordY());
@@ -62,7 +62,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
-        es.distancia += es.calculaDistancia(Bicing.e.get(c.dest1).getCoordX(),
+        c.recorrido += es.calculaDistancia(Bicing.e.get(c.dest1).getCoordX(),
                                             Bicing.e.get(c.dest1).getCoordY(),
                                             Bicing.e.get(estacionDest).getCoordX(),
                                             Bicing.e.get(estacionDest).getCoordY());

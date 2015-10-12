@@ -40,6 +40,7 @@ public class Furgoneta {
         f.dest1 = this.dest1;
         f.dest2 = this.dest2;
         f.numBicis = this.numBicis;
+        f.recorrido = this.recorrido;
         return f;
     }
    
