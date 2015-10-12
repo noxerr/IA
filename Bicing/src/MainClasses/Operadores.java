@@ -42,6 +42,10 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        es.distancia += es.calculaDistancia(Bicing.e.get(c.origen).getCoordX(),
+                                            Bicing.e.get(c.origen).getCoordY(),
+                                            Bicing.e.get(estacionDest).getCoordX(),
+                                            Bicing.e.get(estacionDest).getCoordY());
     }
     
     public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
@@ -58,6 +62,10 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        es.distancia += es.calculaDistancia(Bicing.e.get(c.dest1).getCoordX(),
+                                            Bicing.e.get(c.dest1).getCoordY(),
+                                            Bicing.e.get(estacionDest).getCoordX(),
+                                            Bicing.e.get(estacionDest).getCoordY());
     }
     public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
         c.origen = origen;

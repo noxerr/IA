@@ -31,7 +31,7 @@ public class EstadoInicial extends Estado{
         }
         
         for (Estacion e1 : Bicing.e) {
-            difDemandaBicis.add(e1.getNumBicicletasNext()-e1.getDemanda());
+            difDemandaBicis.add(e1.getNumBicicletasNext()-e1.getDemanda()); 
         }
         Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
@@ -46,6 +46,9 @@ public class EstadoInicial extends Estado{
             }
         }
         System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
+        String retVal = "";
+        for (int f : difDemandaBicis) retVal += f + " | ";
+        System.out.println("DiffDemanda: " + retVal);
        // System.out.println("Estado inicial\n----------------\n " + super.toString());
     }
     
