@@ -45,8 +45,9 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
     public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
         c.dest2 = estacionDest; 
     }
-    public static void setOrigen(Furgoneta c, int j){
-        c.origen = j;
+    public static void setOrigen(Furgoneta c, int origen, int bicisSobran){
+        c.origen = origen;
+        c.numBicis += bicisSobran > 30 ? 30 : bicisSobran;
     }
     //añadir op switch origen o switch destinos o commutar destino1/2 
     

@@ -25,34 +25,33 @@ public class Successores implements SuccessorFunction{
         ArrayList retVal = new ArrayList();
         Estado oldEstado = (Estado) o;
         LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
-        int end = 0;
-        for(int i = 0; i < oldEstado.difDemandaBicis.size() && end == 0; i++){
-            if(oldEstado.difDemandaBicis.get(i) < 0){
+        boolean end = false;
                 //Genera totes les possibles permutacions entre estacions de origen, desti1, desti2
-                for(int n = 0; end == 0 && n < oldEstado.vecCamiones.size(); n++){
+                for(int n = 0; !end && n < oldEstado.vecCamiones.size(); n++){
                     //Busquem el camió que encara no s'ha setejat
                     if(oldEstado.vecCamiones.get(n).dest1 == -1){
-                        end = 1;
+                        end = true;
                         for(int origen = 0; origen<oldEstado.estacOver.size(); origen++){
                             for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
                                 for(int desti2 = 0; desti2 < oldEstado.estacUnder.size();desti2++){
                                     if(desti1 != desti2){//Assegurem no possar desti1 = desti2
                                     Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
                                         oldEstado.difDemandaBicis, oldEstado.renta, oldEstado.sumaSobraFalta);
-                                    Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), origen);
+                                    Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), origen, 5);
                                     Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), desti1, nuevoEstado);
                                     if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                         //Operadores.setDestino2(nuevoEstado.vecCamiones.get(n), desti2, nuevoEstado.difDemandaBicis);
                                     }
-                                    //Añadimos nuevoEstado al arrayList
-                                    retVal.add(nuevoEstado);
+                                    double v = -LSHF.getHeuristicValue(nuevoEstado);
+                                    String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
+                                            + nuevoEstado.toString();
+                                    retVal.add(new Successor(S, nuevoEstado));
                                     }         
                                 }
                             }
                         }                     
                     }
-                }
-            }
+
         }
         return retVal;
     }
