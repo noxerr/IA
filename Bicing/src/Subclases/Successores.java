@@ -20,14 +20,19 @@ import java.util.Random;
  */
 public class Successores implements SuccessorFunction{
 
+    @Override
+    public List getSuccessors(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //Esta funcion genera la lista de los estados accesibles a partir del
     //que recibe como parametro.
     //Esta lista contiene pares de elementos que consisten en un string
     //que representa la operacion que se ha aplicado y el estado sucesor resultante.
-    @Override 
-    public List getSuccessors(Object o) {
+   // @Override 
+   // public List getSuccessors(Object o) {
         //throw new UnsupportedOperationException("Not supported yet.");
-        ArrayList retVal = new ArrayList();
+      /*  ArrayList retVal = new ArrayList();
         Estado oldEstado = (Estado) o;
         LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
         // Recorremos camiones de Bicing uno por uno...
@@ -62,14 +67,14 @@ public class Successores implements SuccessorFunction{
                         retVal.add(new Successor(S, nuevoEstado));
                         vMax = v;
                     }*/
-                    retVal.add(new Successor(S, nuevoEstado));
+                    //retVal.add(new Successor(S, nuevoEstado));
                     //System.out.println(nuevoEstado.toString());
-                }
+/*                }
             }
         }
-        return retVal;
+        return retVal;*/
         //TODO ProbTSPSuccessorFunctionSA a;  ejemplo de generar hijos
         //ProbTSPSuccessorFunction b;
-    }
+   // }
     
 }
