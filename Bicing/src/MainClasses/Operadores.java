@@ -47,7 +47,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
         int xOrigen = e.getCoordX();
         int yOrigen = e.getCoordY();
         e = Bicing.e.get(estacionDest);
-        c.recorrido += es.calculaDistancia(xOrigen,
+        c.recorridoOrigenDest1 += es.calculaDistancia(xOrigen,
                                             yOrigen,
                                             e.getCoordX(),
                                             e.getCoordY());
@@ -71,7 +71,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
         int xOrigen = e.getCoordX();
         int yOrigen = e.getCoordY();
         e = Bicing.e.get(estacionDest);
-        c.recorrido += es.calculaDistancia(xOrigen,
+        c.recorridoDest1Dest2 += es.calculaDistancia(xOrigen,
                                             yOrigen,
                                             e.getCoordX(),
                                             e.getCoordY());

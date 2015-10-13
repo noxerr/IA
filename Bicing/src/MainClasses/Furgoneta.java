@@ -19,7 +19,8 @@ public class Furgoneta {
      //NumBicis Numero de bicis que porta el camio
      public int origen, dest1, dest2;
      public int numBicis;
-     public int recorrido = 0;
+     public int recorridoOrigenDest1 = 0;
+     public int recorridoDest1Dest2 = 0;
 
     public Furgoneta(){
       origen = -1;
@@ -40,7 +41,8 @@ public class Furgoneta {
         f.dest1 = this.dest1;
         f.dest2 = this.dest2;
         f.numBicis = this.numBicis;
-        f.recorrido = this.recorrido;
+        f.recorridoOrigenDest1 = this.recorridoOrigenDest1;
+        f.recorridoDest1Dest2 = this.recorridoDest1Dest2;
         return f;
     }
    

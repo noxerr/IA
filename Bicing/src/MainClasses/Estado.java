@@ -57,7 +57,8 @@ public class Estado {
                     f.origen +". Dest: " +  
                     f.dest1 + " . Dest2: "+ 
                     f.dest2 + " \t" +
-                    f.recorrido+" \t";
+                    f.recorridoOrigenDest1+" \t"+
+                    f.recorridoDest1Dest2+" \t";
             /* Chivato distancia recorrida
             
             if(f.origen!=-1){
@@ -67,10 +68,10 @@ public class Estado {
                 retVal+="\t| "+Bicing.e.get(f.dest2).getCoordX() + ","+Bicing.e.get(f.dest2).getCoordY();
             }*/
             retVal +="\n";
-            recorrido += f.recorrido;
+            recorrido += f.recorridoOrigenDest1+f.recorridoDest1Dest2;
             
         }
-        retVal += "\nDistancia recorrida: " + recorrido + "\n";
+        retVal += "\nDistancia recorrida: " + recorrido + " metros\n";
         retVal += "\nAhora difDemanda: ";
         for (int f : difDemandaBicis) retVal += f + " | ";
         return retVal;
