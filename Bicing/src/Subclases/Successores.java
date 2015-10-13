@@ -24,7 +24,7 @@ public class Successores implements SuccessorFunction{
     public List getSuccessors(Object o) {
         ArrayList retVal = new ArrayList();
         Estado oldEstado = (Estado) o;
-        LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
+        LocalSearchHeuristicFunctionWithTransport LSHF = new LocalSearchHeuristicFunctionWithTransport();
         boolean end = false;
         //Genera totes les possibles permutacions entre estacions de origen, desti1, desti2
         for(int n = 0; !end && n < oldEstado.vecCamiones.size(); n++){

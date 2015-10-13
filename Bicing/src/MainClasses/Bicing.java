@@ -4,6 +4,7 @@ import IA.Bicing.*;
 import Subclases.EstadoFinalTest;
 import Subclases.EstadoInicial;
 import Subclases.LocalSearchHeuristicFunction;
+import Subclases.LocalSearchHeuristicFunctionWithTransport;
 import Subclases.Successores;
 import Subclases.SuccessoresSA;
 import aima.search.framework.Problem;
@@ -50,7 +51,7 @@ public class Bicing {
         System.out.print("------");
         try {
             Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunction());
+                    new LocalSearchHeuristicFunctionWithTransport());
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
             System.out.println();
@@ -66,7 +67,7 @@ public class Bicing {
         System.out.print("------");
         try {
             Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunction());
+                    new LocalSearchHeuristicFunctionWithTransport());
             //int steps, slitter (t max), k, lambda
             Search searchSAnnealing = new SimulatedAnnealingSearch(2000, 100, 5, 0.001);
             //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);

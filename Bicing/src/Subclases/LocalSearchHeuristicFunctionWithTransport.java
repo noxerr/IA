@@ -20,9 +20,10 @@ public class LocalSearchHeuristicFunctionWithTransport implements HeuristicFunct
         //calcular coste mirando la diferencia d bicis actual con la vieja en cada estacion
         int h=0;
         for (Furgoneta f: ((Estado)o).vecCamiones){
-            h = ((f.numBicis+9)/10)*(f.recorridoOrigenDest1/1000);
+            h += ((f.numBicis+9-(f.bicisIniciales-f.numBicis))/10)*(f.recorridoOrigenDest1/1000);
+            //numBicis+9-(bicisDescarregadesADest1)
+            h += ((f.numBicis+9)/10)*(f.recorridoDest1Dest2/1000);            
         }
-        //return ((Estado) o).sumaSobraFalta;
         return h;
     }
 
