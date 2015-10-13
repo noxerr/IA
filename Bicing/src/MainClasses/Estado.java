@@ -7,6 +7,7 @@
 package MainClasses;
 import IA.Bicing.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -32,9 +33,10 @@ public class Estado {
         }
 
        
-        this.estacOver = new ArrayList(over);
-        this.estacUnder = new ArrayList(under);
-        this.difDemandaBicis = new ArrayList(difDemanda);
+        this.estacOver = new ArrayList((Collection) over.clone());
+        this.estacUnder = new ArrayList((Collection) under.clone());
+        this.difDemandaBicis = new ArrayList((Collection) difDemanda.clone());
+        //for (int i : difDemanda) this.difDemandaBicis.add(i);
         this.sumaSobraFalta = sumaSobraFalta;
         this.renta = renta;
     }

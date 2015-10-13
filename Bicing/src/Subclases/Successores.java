@@ -36,10 +36,16 @@ public class Successores implements SuccessorFunction{
                         for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
                                 Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
                                     oldEstado.difDemandaBicis, oldEstado.renta, oldEstado.sumaSobraFalta);
+                                System.out.println("----------");
+                                System.out.println("camion n: " + n+n+n + ". Origen: " + origen + ". Demanda: " + 
+                                        oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)));
+                                System.out.println("bicis1: " + nuevoEstado.vecCamiones.get(n));
                                 Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
                                         oldEstado.difDemandaBicis);
+                                System.out.println("bicis2: " + nuevoEstado.vecCamiones.get(n));
                                 Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
                                         nuevoEstado);
+                                System.out.println("bicis3: " + nuevoEstado.vecCamiones.get(n));
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                     for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
                                         if (desti2 != desti1){ 
@@ -47,6 +53,7 @@ public class Successores implements SuccessorFunction{
                                                     nuevoEstado.estacUnder, nuevoEstado.difDemandaBicis, nuevoEstado.renta, nuevoEstado.sumaSobraFalta);
                                             Operadores.setDestino2(nuevoEstado2.vecCamiones.get(n), 
                                                     oldEstado.estacUnder.get(desti2), nuevoEstado2);
+                                            System.out.println("bicis4: " + nuevoEstado2.vecCamiones.get(n));
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
                                             String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                                     + nuevoEstado2.toString();
