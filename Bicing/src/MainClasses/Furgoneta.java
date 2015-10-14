@@ -22,6 +22,8 @@ public class Furgoneta {
      public int recorridoOrigenDest1 = 0;
      public int recorridoDest1Dest2 = 0;
      public int bicisIniciales = 0;
+     // Bicis con las que sale hacia el destino 2
+     public int bicisHaciaDestino2 = 0;
 
     public Furgoneta(){
       origen = -1;
@@ -45,6 +47,7 @@ public class Furgoneta {
         f.recorridoOrigenDest1 = this.recorridoOrigenDest1;
         f.recorridoDest1Dest2 = this.recorridoDest1Dest2;
         f.bicisIniciales = this.bicisIniciales;
+        f.bicisHaciaDestino2 = this.bicisHaciaDestino2;
         return f;
     }
    

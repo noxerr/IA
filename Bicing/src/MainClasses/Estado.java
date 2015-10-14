@@ -56,9 +56,10 @@ public class Estado {
                     f.numBicis + " Origen: "+ 
                     f.origen +". Dest: " +  
                     f.dest1 + " . Dest2: "+ 
-                    f.dest2 + " \t" +
-                    f.recorridoOrigenDest1+" \t"+
-                    f.recorridoDest1Dest2+" \t";
+                    f.dest2 + " \tRec. D1: " +
+                    f.recorridoOrigenDest1+" \tRec. D2: "+
+                    f.recorridoDest1Dest2+" \tBicis finales: "+
+                    f.numBicis;
             /* Chivato distancia recorrida
             
             if(f.origen!=-1){

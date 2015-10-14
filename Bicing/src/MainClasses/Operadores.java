@@ -42,6 +42,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        c.bicisHaciaDestino2 = c.numBicis;
         // Ganamos un poco en rendimiento haciéndolo de este modo en vez de invocando 4 veces a obtener estacion
         Estacion e = Bicing.e.get(c.origen);
         int xOrigen = e.getCoordX();
