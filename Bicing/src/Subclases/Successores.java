@@ -28,6 +28,7 @@ public class Successores implements SuccessorFunction{
         boolean end = false;
         //Genera totes les possibles permutacions entre estacions de origen, desti1, desti2
         for(int n = 0; !end && n < oldEstado.vecCamiones.size(); n++){
+            double vMax = 0;
             //Busquem el camió que encara no s'ha setejat
             if(oldEstado.vecCamiones.get(n).origen == -1){
                 end = true;
@@ -55,19 +56,25 @@ public class Successores implements SuccessorFunction{
                                                     oldEstado.estacUnder.get(desti2), nuevoEstado2);
                                             //System.out.println("bicis4: " + nuevoEstado2.vecCamiones.get(n));
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
+                                            if (v > vMax){
+                                                vMax = v;
                                             String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                                     + nuevoEstado2.toString();
                                             //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado2.vecCamiones.get(n).origen + " Destino: " + nuevoEstado2.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado2.vecCamiones.get(n).dest2);
                                             retVal.add(new Successor(S, nuevoEstado2)); 
+                                            }
                                         }
                                     }
                                 }
                                 else {
                                     double v = -LSHF.getHeuristicValue(nuevoEstado);
+                                    if (v > vMax){
+                                                vMax = v;
                                     String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                             + nuevoEstado.toString();
                                     //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado.vecCamiones.get(n).origen + " Destino: " + nuevoEstado.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado.vecCamiones.get(n).dest2);
                                     retVal.add(new Successor(S, nuevoEstado));    
+                                    }
                                 }
                         }
                     }

@@ -7,6 +7,7 @@ package MainClasses;
 
 import IA.Bicing.Estacion;
 import java.util.ArrayList;
+import javafx.beans.binding.NumberBinding;
 
 
 /**
@@ -65,21 +66,26 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
                                             yOrigen,
                                             e.getCoordX(),
                                             e.getCoordY());
-        c.costeAcumulado += (((int)(c.numBicis+9)/10))*(c.recorridoDest1Dest2/1000); 
+        //int auxi = c.numBicis > -es.difDemandaBicis.get(estacionDest) ? -es.difDemandaBicis.get(estacionDest) : c.numBicis;
+        //System.out.println("Val auxi: " + auxi + ". Gasto: " + ((int)(c.numBicis+9)/10)*(c.recorridoDest1Dest2/1000));
+        //if ( ((int)(c.numBicis+9)/10)*(c.recorridoDest1Dest2/1000) >  auxi){
         
-        if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
-            c.numBicis += es.difDemandaBicis.get(estacionDest);
-            es.renta -= es.difDemandaBicis.get(estacionDest);
-            es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
-            es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
-        }
-        else {
-            es.sumaSobraFalta -= c.numBicis;
-            es.renta += c.numBicis;
-            es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
-            c.numBicis = 0;
-        }
-        es.renta -= c.costeAcumulado;
+            c.costeAcumulado += (((int)(c.numBicis+9)/10))*(c.recorridoDest1Dest2/1000); 
+
+            if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
+                c.numBicis += es.difDemandaBicis.get(estacionDest);
+                es.renta -= es.difDemandaBicis.get(estacionDest);
+                es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
+                es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
+            }
+            else {
+                es.sumaSobraFalta -= c.numBicis;
+                es.renta += c.numBicis;
+                es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
+                c.numBicis = 0;
+            }
+            es.renta -= c.costeAcumulado;
+        //}
     }
     public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
         c.origen = origen;
