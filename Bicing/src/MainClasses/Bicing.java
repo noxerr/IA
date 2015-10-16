@@ -7,6 +7,7 @@ import Subclases.LocalSearchHeuristicFunction;
 import Subclases.LocalSearchHeuristicFunctionWithTransport;
 import Subclases.Successores;
 import Subclases.SuccessoresSA;
+import Subclases.SucesoresSinCoste;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -26,7 +27,8 @@ import java.util.logging.Logger;
 public class Bicing {
     public static Estaciones e;
     public static ArrayList<Integer> difDemandaInicial; //diferencia positiva es que sobran bicis
-    public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
+    public static int furgos = 5, bicis = 1250, estac = 25, maxBici = 30;
+    //public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
     //public static int furgos = 10, bicis = 2500, estac = 50, maxBici = 30;
     public static int EstacionUsada = 6001;
     /**
@@ -51,7 +53,9 @@ public class Bicing {
         System.out.println("\nHill Climbing search:");
         System.out.print("------");
         try {
-            Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
+            /*Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());*/
+            Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);

@@ -7,7 +7,7 @@ package Subclases;
 
 import MainClasses.Bicing;
 import MainClasses.Estado;
-import MainClasses.Operadores;
+import MainClasses.OperadoresSinCoste;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
@@ -40,10 +40,10 @@ public class SucesoresSinCoste implements SuccessorFunction{
                                 System.out.println("camion n: " + n+n+n + ". Origen: " + origen + ". Demanda: " + 
                                         oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)));
                                 System.out.println("bicis1: " + nuevoEstado.vecCamiones.get(n));*/
-                                Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
+                                OperadoresSinCoste.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
                                         nuevoEstado.difDemandaBicis);
                                 //System.out.println("bicis2: " + nuevoEstado.vecCamiones.get(n));
-                                Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
+                                OperadoresSinCoste.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
                                         nuevoEstado);
                                 //System.out.println("bicis3: " + nuevoEstado.vecCamiones.get(n));
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
@@ -51,7 +51,7 @@ public class SucesoresSinCoste implements SuccessorFunction{
                                         if (desti2 != desti1){ 
                                             Estado nuevoEstado2 = new Estado(nuevoEstado.vecCamiones, nuevoEstado.estacOver, 
                                                     nuevoEstado.estacUnder, nuevoEstado.difDemandaBicis, nuevoEstado.renta, nuevoEstado.sumaSobraFalta);
-                                            Operadores.setDestino2(nuevoEstado2.vecCamiones.get(n), 
+                                            OperadoresSinCoste.setDestino2(nuevoEstado2.vecCamiones.get(n), 
                                                     oldEstado.estacUnder.get(desti2), nuevoEstado2);
                                             //System.out.println("bicis4: " + nuevoEstado2.vecCamiones.get(n));
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
