@@ -30,20 +30,6 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
     // Actualiza demanda y resta bicis
     public static void setDestino1(Furgoneta c, int estacionDest, Estado es){
         c.dest1 = estacionDest; 
-        if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
-            c.numBicis += es.difDemandaBicis.get(estacionDest);
-            es.renta -= es.difDemandaBicis.get(estacionDest);
-            es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
-            es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
-        }
-        else {
-            es.sumaSobraFalta -= c.numBicis;
-            es.renta += c.numBicis;
-            es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
-            c.numBicis = 0;
-        }
-        c.bicisHaciaDestino2 = c.numBicis;
-        // Ganamos un poco en rendimiento haciéndolo de este modo en vez de invocando 4 veces a obtener estacion
         Estacion e = Bicing.e.get(c.origen);
         int xOrigen = e.getCoordX();
         int yOrigen = e.getCoordY();
@@ -52,10 +38,8 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
                                             yOrigen,
                                             e.getCoordX(),
                                             e.getCoordY());
-    }
-    
-    public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
-        c.dest2 = estacionDest; 
+        c.costeAcumulado = (((int)(c.numBicis+9)/10))*(c.recorridoOrigenDest1/1000);
+        
         if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
             c.numBicis += es.difDemandaBicis.get(estacionDest);
             es.renta -= es.difDemandaBicis.get(estacionDest);
@@ -68,6 +52,11 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        es.renta -= c.costeAcumulado;
+    }
+    
+    public static void setDestino2(Furgoneta c, int estacionDest, Estado es){
+        c.dest2 = estacionDest; 
         Estacion e = Bicing.e.get(c.dest1);
         int xOrigen = e.getCoordX();
         int yOrigen = e.getCoordY();
@@ -76,12 +65,26 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
                                             yOrigen,
                                             e.getCoordX(),
                                             e.getCoordY());
+        c.costeAcumulado += (((int)(c.numBicis+9)/10))*(c.recorridoDest1Dest2/1000); 
+        
+        if (c.numBicis > -es.difDemandaBicis.get(estacionDest)) {
+            c.numBicis += es.difDemandaBicis.get(estacionDest);
+            es.renta -= es.difDemandaBicis.get(estacionDest);
+            es.sumaSobraFalta += es.difDemandaBicis.get(estacionDest);
+            es.difDemandaBicis.set(estacionDest, 0);//ja no faltan bicis
+        }
+        else {
+            es.sumaSobraFalta -= c.numBicis;
+            es.renta += c.numBicis;
+            es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
+            c.numBicis = 0;
+        }
+        es.renta -= c.costeAcumulado;
     }
     public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
         c.origen = origen;
         c.numBicis += difDemanda.get(origen) > 30 ? 30 : difDemanda.get(origen);
         difDemanda.set(origen, Bicing.EstacionUsada);
-        c.bicisIniciales = c.numBicis;
     }
     //añadir op switch origen o switch destinos o commutar destino1/2 
     
