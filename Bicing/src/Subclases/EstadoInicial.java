@@ -37,8 +37,11 @@ public class EstadoInicial extends Estado{
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
             if (aux > 0){
+                int noUsadas = e.get(i).getNumBicicletasNoUsadas();
+                int sobran = noUsadas <= aux ? noUsadas : aux;
                 estacOver.add(i);
-                sumaSobraFalta += aux;
+                sumaSobraFalta += sobran;
+                difDemandaBicis.set(i, sobran);
             }
             else if(aux < 0){
                 estacUnder.add(i);

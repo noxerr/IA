@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class Bicing {
     public static Estaciones e;
     public static ArrayList<Integer> difDemandaInicial; //diferencia positiva es que sobran bicis
-    public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
+    public static int furgos = 5, bicis = 1250, estac = 25, maxBici = 30;
     //public static int furgos = 10, bicis = 2500, estac = 50, maxBici = 30;
     public static int EstacionUsada = 6001;
     /**

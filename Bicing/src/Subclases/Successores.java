@@ -13,6 +13,7 @@ import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import IA.Bicing.Estacion;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Successores implements SuccessorFunction{
             if(oldEstado.vecCamiones.get(n).origen == -1){
                 end = true;
                 for(int origen = 0; origen<oldEstado.estacOver.size(); origen++){
+                    int eOrigen = oldEstado.estacOver.get(origen);
                     if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)) != Bicing.EstacionUsada){
                         for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
                                 Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
@@ -41,7 +43,7 @@ public class Successores implements SuccessorFunction{
                                 System.out.println("camion n: " + n+n+n + ". Origen: " + origen + ". Demanda: " + 
                                         oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)));
                                 System.out.println("bicis1: " + nuevoEstado.vecCamiones.get(n));*/
-                                Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
+                                Operadores.setOrigen(nuevoEstado.vecCamiones.get(n), eOrigen, 
                                         nuevoEstado.difDemandaBicis);
                                 //System.out.println("bicis2: " + nuevoEstado.vecCamiones.get(n));
                                 Operadores.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
@@ -58,7 +60,7 @@ public class Successores implements SuccessorFunction{
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
                                             if (v > vMax){
                                                 vMax = v;
-                                            String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
+                                            String S = "Operacion: DESTINO 2" + " " + origen + " Renta(" + v + ") ---> " 
                                                     + nuevoEstado2.toString();
                                             //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado2.vecCamiones.get(n).origen + " Destino: " + nuevoEstado2.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado2.vecCamiones.get(n).dest2);
                                             retVal.add(new Successor(S, nuevoEstado2)); 
@@ -70,7 +72,7 @@ public class Successores implements SuccessorFunction{
                                     double v = -LSHF.getHeuristicValue(nuevoEstado);
                                     if (v > vMax){
                                                 vMax = v;
-                                    String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
+                                    String S = "Operacion: DESTINO 1" + " " + origen + " Renta(" + v + ") ---> " 
                                             + nuevoEstado.toString();
                                     //System.out.println("Camión: "+ n + " Origen: "+ nuevoEstado.vecCamiones.get(n).origen + " Destino: " + nuevoEstado.vecCamiones.get(n).dest1 + " Destino 2: " + nuevoEstado.vecCamiones.get(n).dest2);
                                     retVal.add(new Successor(S, nuevoEstado));    
