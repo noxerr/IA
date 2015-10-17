@@ -89,10 +89,10 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
     }
     public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
         c.origen = origen;
-        int aux = Bicing.e.get(origen).getNumBicicletasNoUsadas() < difDemanda.get(origen) 
+        /*int aux = Bicing.e.get(origen).getNumBicicletasNoUsadas() < difDemanda.get(origen) 
                 ? Bicing.e.get(origen).getNumBicicletasNoUsadas() : difDemanda.get(origen);
-        c.numBicis += aux > 30 ? 30 : aux;
-        //c.numBicis += difDemanda.get(origen) > 30 ? 30 : difDemanda.get(origen);
+        c.numBicis += aux > 30 ? 30 : aux;*/
+        c.numBicis = difDemanda.get(origen) > 30 ? 30 : difDemanda.get(origen);
         difDemanda.set(origen, Bicing.EstacionUsada);
     }
     //añadir op switch origen o switch destinos o commutar destino1/2 
