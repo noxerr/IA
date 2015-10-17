@@ -25,6 +25,7 @@ div es la división entera. Tener en cuenta las bicis EN EL MOMENTO CONCRETO que
     public double getHeuristicValue(Object o) {
         //calcular coste mirando la diferencia d bicis actual con la vieja en cada estacion
         return -((Estado) o).renta;
+        //return ((Estado) o).sumaSobraFalta;
     }
 
 }

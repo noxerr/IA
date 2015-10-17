@@ -31,15 +31,6 @@ public class Bicing {
     //public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
     //public static int furgos = 10, bicis = 2500, estac = 50, maxBici = 30;
     public static int EstacionUsada = 6001;
-    
-    /**
-     * Modo 1: HC sin costes de gasolina
-     * Modo 2: HC con costes de gasolina
-     * Modo 3: SA
-     */
-    public static int modo = 2;
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -49,25 +40,8 @@ public class Bicing {
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
         long t1 = System.nanoTime();
         Estado estatInicial = new EstadoInicial(e, bicis);
-        String msg ="";
-        switch(modo){
-            case 1:
-                msg = "HC sin coste";
-                break;
-            case 2:
-                msg = "HC con coste";
-                break;
-            case 3:
-                msg = "SA";
-                break;
-        }
-        System.out.println("\n-------------------------------------\n"+ msg + "\n-------------------------------------\n");
         long t2 = System.nanoTime();
-        if(modo==1 || modo==2){
-            BicingHillClimbingSearch(estatInicial);//
-        }else{
-            BicingSimulatedAnnealingSearch(estatInicial);
-        }
+        BicingHillClimbingSearch(estatInicial);//
         long t3 = System.nanoTime();
         
         //BicingSimulatedAnnealingSearch(estatInicial);
@@ -76,15 +50,13 @@ public class Bicing {
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial){
-        Problem problem;
+        System.out.println("\nHill Climbing search:");
+        System.out.print("------");
         try {
-            if(modo==1){
-                problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunction());
-            }else{
-                problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
+            /*Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());*/
+            Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
-            }
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
             System.out.println();
@@ -96,6 +68,8 @@ public class Bicing {
     }
     
     private static void BicingSimulatedAnnealingSearch(Estado estatInicial){
+        System.out.println("\n\nSimulated Annealing search:");
+        System.out.print("------");
         try {
             Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());

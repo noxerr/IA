@@ -24,7 +24,7 @@ public class SucesoresSinCoste implements SuccessorFunction{
     public List getSuccessors(Object o) {
         ArrayList retVal = new ArrayList();
         Estado oldEstado = (Estado) o;
-        LocalSearchHeuristicFunction LSHF = new LocalSearchHeuristicFunction();
+        LocalSearchHeuristicFunctionWithTransport LSHF = new LocalSearchHeuristicFunctionWithTransport();
         boolean end = false;
         //Genera totes les possibles permutacions entre estacions de origen, desti1, desti2
         for(int n = 0; !end && n < oldEstado.vecCamiones.size(); n++){
@@ -32,7 +32,6 @@ public class SucesoresSinCoste implements SuccessorFunction{
             if(oldEstado.vecCamiones.get(n).origen == -1){
                 end = true;
                 for(int origen = 0; origen<oldEstado.estacOver.size(); origen++){
-                    int eOrigen = oldEstado.estacOver.get(origen);
                     if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)) != Bicing.EstacionUsada){
                         for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
                                 Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
@@ -41,7 +40,7 @@ public class SucesoresSinCoste implements SuccessorFunction{
                                 System.out.println("camion n: " + n+n+n + ". Origen: " + origen + ". Demanda: " + 
                                         oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)));
                                 System.out.println("bicis1: " + nuevoEstado.vecCamiones.get(n));*/
-                                OperadoresSinCoste.setOrigen(nuevoEstado.vecCamiones.get(n), eOrigen, 
+                                OperadoresSinCoste.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
                                         nuevoEstado.difDemandaBicis);
                                 //System.out.println("bicis2: " + nuevoEstado.vecCamiones.get(n));
                                 OperadoresSinCoste.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
