@@ -3,6 +3,7 @@ package MainClasses;
 import IA.Bicing.*;
 import Subclases.EstadoFinalTest;
 import Subclases.EstadoInicial;
+import Subclases.EstadoInicialSA;
 import Subclases.LocalSearchHeuristicFunction;
 import Subclases.LocalSearchHeuristicFunctionWithTransport;
 import Subclases.Successores;
@@ -40,23 +41,25 @@ public class Bicing {
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
         long t1 = System.nanoTime();
         Estado estatInicial = new EstadoInicial(e, bicis);
+        Estado estatInicialSA = new EstadoInicialSA(e, bicis);
         long t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial);//
         long t3 = System.nanoTime();
-        
-        //BicingSimulatedAnnealingSearch(estatInicial);
-        
         System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        
+        BicingSimulatedAnnealingSearch(estatInicialSA);
+        
+        
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial){
         System.out.println("\nHill Climbing search:");
         System.out.print("------");
         try {
-            /*Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunctionWithTransport());*/
-            Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+            Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
+            /*Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());*/
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
             System.out.println();
@@ -74,7 +77,7 @@ public class Bicing {
             Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
             //int steps, slitter (t max), k, lambda
-            Search searchSAnnealing = new SimulatedAnnealingSearch(2000, 100, 5, 0.001);
+            Search searchSAnnealing = new SimulatedAnnealingSearch(5000, 200, 5, 0.001);
             //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
             SearchAgent agent = new SearchAgent(problem, searchSAnnealing);
             System.out.println();
