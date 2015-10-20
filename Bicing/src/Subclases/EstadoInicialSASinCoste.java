@@ -12,6 +12,7 @@ import MainClasses.Bicing;
 import MainClasses.Estado;
 import MainClasses.Furgoneta;
 import MainClasses.Operadores;
+import MainClasses.OperadoresSinCoste;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -19,9 +20,9 @@ import java.util.Collection;
  *
  * @author Ferran
  */
-public class EstadoInicialSA extends Estado{
+public class EstadoInicialSASinCoste extends Estado{
 
-    public EstadoInicialSA(Estaciones e, int numBicis) {
+    public EstadoInicialSASinCoste(Estaciones e, int numBicis) {
         super(Bicing.furgos);
         generaEstadoInicial(e);
     }
@@ -53,9 +54,9 @@ public class EstadoInicialSA extends Estado{
         for(int n = 0; n < vecCamiones.size(); n++){
             if (origen < estacOver.size()){
                 if (dest < estacUnder.size()){
-                    Operadores.setOrigen(vecCamiones.get(n), estacOver.get(origen), 
+                    OperadoresSinCoste.setOrigen(vecCamiones.get(n), estacOver.get(origen), 
                                     difDemandaBicis);
-                    Operadores.changeDestino1(vecCamiones.get(n), estacUnder.get(dest), 
+                    OperadoresSinCoste.changeDestino1(vecCamiones.get(n), estacUnder.get(dest), 
                             this);
                     dest++;
                 }

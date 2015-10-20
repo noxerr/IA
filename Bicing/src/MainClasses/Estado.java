@@ -5,10 +5,8 @@
  */
 
 package MainClasses;
-import IA.Bicing.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  *

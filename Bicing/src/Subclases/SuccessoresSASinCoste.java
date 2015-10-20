@@ -8,6 +8,7 @@ package Subclases;
 
 import MainClasses.Bicing;
 import MainClasses.Estado;
+import MainClasses.Operadores;
 import MainClasses.OperadoresSinCoste;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
@@ -19,7 +20,7 @@ import java.util.Random;
  *
  * @author Dani
  */
-public class SuccessoresSA implements SuccessorFunction{
+public class SuccessoresSASinCoste implements SuccessorFunction{
 
     //Esta funcion genera la lista de los estados accesibles a partir del
     //que recibe como parametro.
