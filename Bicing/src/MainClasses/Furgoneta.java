@@ -23,6 +23,7 @@ public class Furgoneta {
      public int recorridoDest1Dest2 = 0;
      public int costeAcumulado = 0;
      public int beneficioAportado = 0;
+     public int bicisDest1, bicisDest2;
      // Bicis con las que sale hacia el destino 2
 
     public Furgoneta(){
@@ -30,6 +31,8 @@ public class Furgoneta {
       dest1 = -1;
       dest2 = -1;
       numBicis= 0;
+      bicisDest1 = 0; 
+      bicisDest2 = 0;
     }
     
     @Override

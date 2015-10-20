@@ -56,10 +56,10 @@ public class Bicing {
         System.out.println("\nHill Climbing search:");
         System.out.print("------");
         try {
-            Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunctionWithTransport());
-            /*Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+            /*Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());*/
+            Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
             System.out.println();
