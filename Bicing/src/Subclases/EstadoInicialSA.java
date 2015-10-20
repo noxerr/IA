@@ -56,7 +56,7 @@ public class EstadoInicialSA extends Estado{
                 if (dest < estacUnder.size()){
                     OperadoresSinCoste.setOrigen(vecCamiones.get(n), estacOver.get(origen), 
                                     difDemandaBicis);
-                    OperadoresSinCoste.setDestino1(vecCamiones.get(n), estacUnder.get(dest), 
+                    OperadoresSinCoste.changeDestino1(vecCamiones.get(n), estacUnder.get(dest), 
                             this);
                     dest++;
                 }
