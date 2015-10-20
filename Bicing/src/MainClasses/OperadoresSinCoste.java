@@ -149,8 +149,9 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
         }
     }
     public static void changeOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda, Estado es){
-        int ax = es.difDemandaBicis.get(c.origen);
-        es.difDemandaBicis.set(ax, origen);
+        difDemanda.set(c.origen, Bicing.difDemandaInicial.get(c.origen));
+        difDemanda.set(c.dest1, Bicing.difDemandaInicial.get(c.dest1));
+        if (c.dest2 != -1) difDemanda.set(c.dest2, Bicing.difDemandaInicial.get(c.dest2));
         c.origen = origen;
         c.numBicis = 0;
         int aux = Bicing.e.get(origen).getNumBicicletasNoUsadas() < difDemanda.get(origen) 
@@ -163,6 +164,8 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
         c.recorridoDest1Dest2 = 0;
         c.recorridoOrigenDest1 = 0;
         c.costeAcumulado = 0;
+        c.dest1 = -1;
+        c.dest2 = -1;
         
     }
 }

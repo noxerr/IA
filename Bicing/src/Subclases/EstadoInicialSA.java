@@ -14,6 +14,7 @@ import MainClasses.Furgoneta;
 import MainClasses.Operadores;
 import MainClasses.OperadoresSinCoste;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -35,7 +36,7 @@ public class EstadoInicialSA extends Estado{
         for (Estacion e1 : Bicing.e) {
             difDemandaBicis.add(e1.getNumBicicletasNext()-e1.getDemanda()); 
         }
-        Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
+        Bicing.difDemandaInicial = new ArrayList((Collection) difDemandaBicis.clone());
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
             if (aux > 0){
