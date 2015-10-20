@@ -77,7 +77,7 @@ public class Bicing {
             Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
             //int steps, slitter (t max), k, lambda
-            Search searchSAnnealing = new SimulatedAnnealingSearch(1000, 200, 4, 0.001);
+            Search searchSAnnealing = new SimulatedAnnealingSearch(1000, 200, 5, 0.01);
             //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
             SearchAgent agent = new SearchAgent(problem, searchSAnnealing);
             System.out.println();
