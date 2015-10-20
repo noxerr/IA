@@ -48,10 +48,11 @@ public class SuccessoresSA implements SuccessorFunction{
                         nuevoEstado.difDemandaBicis, nuevoEstado);
                     OperadoresSinCoste.changeDestino1(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacUnder.get(i), 
                             nuevoEstado);
-
-                    k = myRandom.nextInt(oldEstado.estacUnder.size());
-                    OperadoresSinCoste.changeDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
-                            nuevoEstado);
+                    if (nuevoEstado.vecCamiones.get(j).numBicis > 0){
+                        k = myRandom.nextInt(oldEstado.estacUnder.size());
+                        OperadoresSinCoste.changeDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
+                                nuevoEstado);
+                    }
                 }
             }
             else nuevoEstado.renta = -100000;
