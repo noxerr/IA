@@ -38,25 +38,60 @@ public class Bicing {
     public static void main(String[] args) {
         //Para generar los escenarios deberéis hacer 
         //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
+        long t1,t2,t3;
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
-        long t1 = System.nanoTime();
-        Estado estatInicial = new EstadoInicial(e, bicis);
-        Estado estatInicialSA = new EstadoInicialSA(e, bicis);
-        long t2 = System.nanoTime();
+        Estado estatInicial;
+        Estado estatInicialSA;
+        
+        /* HC sin costes */
+        t1 = System.nanoTime();
+        estatInicial = new EstadoInicial(e, bicis);
+        t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, false);
-        long t3 = System.nanoTime();
+        t3 = System.nanoTime();
         System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
         
+        
+        /* HC con costes */
+        t1 = System.nanoTime();
+        estatInicial = new EstadoInicial(e, bicis);
+        t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, true);
-        BicingSimulatedAnnealingSearch(estatInicialSA, false);
-        BicingSimulatedAnnealingSearch(estatInicialSA, true);
+        t3 = System.nanoTime();
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        
+        
+        /**
+         * Parámetros para SA
+         */
+        int steps = 1000;
+        int stiter = 200;
+        int k = 5;
+        double lamb = 0.01;
+        
+        /* SA sin costes */
+        t1 = System.nanoTime();
+        estatInicialSA = new EstadoInicialSA(e, bicis);
+        t2 = System.nanoTime();
+        BicingSimulatedAnnealingSearch(estatInicialSA, false, steps, stiter, k, lamb);
+        t3 = System.nanoTime();
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        
+        /* SA con costes */
+        t1 = System.nanoTime();
+        estatInicialSA = new EstadoInicialSA(e, bicis);
+        t2 = System.nanoTime();
+        BicingSimulatedAnnealingSearch(estatInicialSA, true, steps, stiter, k, lamb);
+        t3 = System.nanoTime();
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
         
         
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste){
+        System.out.print("\n-------------------------------------------------------------");
         System.out.println("\nHill Climbing search " + ((coste) ? "con coste:" : "sin coste:"));
-        System.out.print("------");
+        System.out.print("-------------------------------------------------------------");
         Problem problem;
         try {
             if(coste){
@@ -76,9 +111,11 @@ public class Bicing {
         }
     }
     
-    private static void BicingSimulatedAnnealingSearch(Estado estatInicial, boolean coste){
-        System.out.println("\n\nSimulated Annealing search " + ((coste) ? "con coste:" : "sin coste:"));
-        System.out.print("------");
+    private static void BicingSimulatedAnnealingSearch(Estado estatInicial, boolean coste, int steps, int stiter , int k , double lamb){
+        System.out.print("\n-------------------------------------------------------------");
+        System.out.println("\nSimulated Annealing search " + ((coste) ? "con coste:" : "sin coste:"));
+        System.out.println("Params:\n\tSteps:\t"+ steps + "\n\tStiter:\t" + stiter + "\n\tk:\t"+k + "\n\tLambda:\t"+lamb);
+        System.out.print("-------------------------------------------------------------");
         Problem problem;
         try {
             if(coste){
@@ -90,7 +127,7 @@ public class Bicing {
             }
             
             //int steps, slitter (t max), k, lambda
-            Search searchSAnnealing = new SimulatedAnnealingSearch(1000, 200, 5, 0.01);
+            Search searchSAnnealing = new SimulatedAnnealingSearch(steps, stiter, k, lamb);
             //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
             SearchAgent agent = new SearchAgent(problem, searchSAnnealing);
             System.out.println();
