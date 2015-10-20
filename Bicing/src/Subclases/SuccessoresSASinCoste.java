@@ -9,7 +9,7 @@ package Subclases;
 import MainClasses.Bicing;
 import MainClasses.Estado;
 import MainClasses.Operadores;
-import MainClasses.OperadoresSinCoste;
+import MainClasses.OperadoresSinCosteSA;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
@@ -44,13 +44,13 @@ public class SuccessoresSASinCoste implements SuccessorFunction{
                 if (nuevoEstado.difDemandaBicis.get(nuevoEstado.estacOver.get(k)) == Bicing.EstacionUsada) 
                     nuevoEstado.renta = -100000;
                 else {
-                    OperadoresSinCoste.changeOrigen(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacOver.get(k), 
+                    OperadoresSinCosteSA.changeOrigen(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacOver.get(k), 
                         nuevoEstado.difDemandaBicis, nuevoEstado);
-                    OperadoresSinCoste.changeDestino1(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacUnder.get(i), 
+                    OperadoresSinCosteSA.changeDestino1(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacUnder.get(i), 
                             nuevoEstado);
                     if (nuevoEstado.vecCamiones.get(j).numBicis > 0){
                         k = myRandom.nextInt(oldEstado.estacUnder.size());
-                        OperadoresSinCoste.changeDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
+                        OperadoresSinCosteSA.changeDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
                                 nuevoEstado);
                     }
                 }

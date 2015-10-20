@@ -6,7 +6,9 @@ import Subclases.EstadoInicial;
 import Subclases.EstadoInicialSA;
 import Subclases.LocalSearchHeuristicFunctionWithTransport;
 import Subclases.SuccessoresSA;
+import Subclases.SuccessoresSASinCoste;
 import Subclases.SucesoresSinCoste;
+import Subclases.Successores;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -41,23 +43,29 @@ public class Bicing {
         Estado estatInicial = new EstadoInicial(e, bicis);
         Estado estatInicialSA = new EstadoInicialSA(e, bicis);
         long t2 = System.nanoTime();
-        BicingHillClimbingSearch(estatInicial);//
+        BicingHillClimbingSearch(estatInicial, false);
         long t3 = System.nanoTime();
         System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
         
-        BicingSimulatedAnnealingSearch(estatInicialSA);
+        BicingHillClimbingSearch(estatInicial, true);
+        BicingSimulatedAnnealingSearch(estatInicialSA, false);
+        BicingSimulatedAnnealingSearch(estatInicialSA, true);
         
         
     }
     
-    private static void BicingHillClimbingSearch(Estado estatInicial){
-        System.out.println("\nHill Climbing search:");
+    private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste){
+        System.out.println("\nHill Climbing search " + ((coste) ? "con coste:" : "sin coste:"));
         System.out.print("------");
+        Problem problem;
         try {
-            /*Problem problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
-                    new LocalSearchHeuristicFunctionWithTransport());*/
-            Problem problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+            if(coste){
+                problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
+            }else{
+                problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());
+            }
             Search searchHClimbing = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, searchHClimbing);
             System.out.println();
@@ -68,12 +76,19 @@ public class Bicing {
         }
     }
     
-    private static void BicingSimulatedAnnealingSearch(Estado estatInicial){
-        System.out.println("\n\nSimulated Annealing search:");
+    private static void BicingSimulatedAnnealingSearch(Estado estatInicial, boolean coste){
+        System.out.println("\n\nSimulated Annealing search " + ((coste) ? "con coste:" : "sin coste:"));
         System.out.print("------");
+        Problem problem;
         try {
-            Problem problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
+            if(coste){
+                problem = new Problem(estatInicial, new SuccessoresSA(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
+            }else{
+                problem = new Problem(estatInicial, new SuccessoresSASinCoste(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());
+            }
+            
             //int steps, slitter (t max), k, lambda
             Search searchSAnnealing = new SimulatedAnnealingSearch(1000, 200, 5, 0.01);
             //SimulatedAnnealingSearch search =  new SimulatedAnnealingSearch(2000,100,5,0.001);
