@@ -51,12 +51,12 @@ public class Successores implements SuccessorFunction{
                                          == 0)nuevoEstado.estacUnder.remove(desti1);
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                     
-                                    for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
+                                    for (int desti2 = 0; desti2 < nuevoEstado.estacUnder.size(); desti2++){
                                         if (desti2 != desti1){ 
                                             Estado nuevoEstado2 = new Estado(nuevoEstado.vecCamiones, nuevoEstado.estacOver, 
                                                     nuevoEstado.estacUnder, nuevoEstado.difDemandaBicis, nuevoEstado.renta, nuevoEstado.sumaSobraFalta);
                                             Operadores.setDestino2(nuevoEstado2.vecCamiones.get(n), 
-                                                    oldEstado.estacUnder.get(desti2), nuevoEstado2);
+                                                    nuevoEstado.estacUnder.get(desti2), nuevoEstado2);
                                             //System.out.println("bicis4: " + nuevoEstado2.vecCamiones.get(n));
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
                                             if (v > vMax){

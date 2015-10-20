@@ -22,6 +22,7 @@ public class Furgoneta {
      public int recorridoOrigenDest1 = 0;
      public int recorridoDest1Dest2 = 0;
      public int costeAcumulado = 0;
+     public int beneficioAportado = 0;
      // Bicis con las que sale hacia el destino 2
 
     public Furgoneta(){
@@ -33,7 +34,7 @@ public class Furgoneta {
     
     @Override
     public String toString() {
-        return ("Número de bicis" + numBicis + " ");
+        return ("Número de bicis: " + numBicis + " ");
     }
     
     @Override
@@ -46,6 +47,7 @@ public class Furgoneta {
         f.recorridoOrigenDest1 = this.recorridoOrigenDest1;
         f.recorridoDest1Dest2 = this.recorridoDest1Dest2;
         f.costeAcumulado = this.costeAcumulado;
+        f.beneficioAportado = this.beneficioAportado;
         return f;
     }
    

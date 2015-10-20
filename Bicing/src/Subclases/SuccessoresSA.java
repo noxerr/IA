@@ -39,21 +39,18 @@ public class SuccessoresSA implements SuccessorFunction{
         if (oldEstado.estacUnder.size() > 0) {
             i = myRandom.nextInt(oldEstado.estacUnder.size());
             int j = myRandom.nextInt(oldEstado.vecCamiones.size());
-            int k = oldEstado.vecCamiones.get(j).origen;
-            if(k == -1) {
-                if (oldEstado.estacOver.size() > 0) {
-                    k = myRandom.nextInt(oldEstado.estacOver.size());
-                    OperadoresSinCoste.setOrigen(nuevoEstado.vecCamiones.get(j), oldEstado.estacOver.get(k), 
-                            nuevoEstado.difDemandaBicis);
-                    OperadoresSinCoste.setDestino1(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(i), 
-                            nuevoEstado);
-                    
-                    k = myRandom.nextInt(oldEstado.estacUnder.size());
-                    OperadoresSinCoste.setDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
-                            nuevoEstado);
-                    if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(k)) == Bicing.EstacionUsada) 
-                        nuevoEstado.renta = -100000;
-                }
+            if (oldEstado.estacOver.size() > 0) {
+                int k = myRandom.nextInt(oldEstado.estacOver.size());
+                OperadoresSinCoste.changeOrigen(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacOver.get(k), 
+                        nuevoEstado.difDemandaBicis, nuevoEstado);
+                OperadoresSinCoste.changeDestino1(nuevoEstado.vecCamiones.get(j), nuevoEstado.estacUnder.get(i), 
+                        nuevoEstado);
+
+                k = myRandom.nextInt(oldEstado.estacUnder.size());
+                OperadoresSinCoste.changeDestino2(nuevoEstado.vecCamiones.get(j), oldEstado.estacUnder.get(k), 
+                        nuevoEstado);
+                if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(k)) == Bicing.EstacionUsada) 
+                    nuevoEstado.renta = -100000;
             }
             else nuevoEstado.renta = -100000;
         }
