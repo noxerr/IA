@@ -5,6 +5,7 @@ import Subclases.EstadoFinalTest;
 import Subclases.EstadoInicial;
 import Subclases.EstadoInicialSA;
 import Subclases.LocalSearchHeuristicFunctionWithTransport;
+import Subclases.HeuristicFunctionOld;
 import Subclases.SuccessoresSA;
 import Subclases.SuccessoresSASinCoste;
 import Subclases.SucesoresSinCoste;
