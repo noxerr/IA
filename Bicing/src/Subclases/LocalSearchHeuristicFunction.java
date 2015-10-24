@@ -7,7 +7,6 @@
 package Subclases;
 
 import MainClasses.Estado;
-import MainClasses.Furgoneta;
 import aima.search.framework.HeuristicFunction;
 /**
  *

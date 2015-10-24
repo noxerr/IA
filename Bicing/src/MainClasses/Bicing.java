@@ -51,7 +51,7 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, false, false);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC sin Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         
         /* HC con costes */
@@ -60,7 +60,7 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, true, false);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC con Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         
         /* HC sin costes nuevo OP*/
@@ -69,7 +69,7 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, false, true);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC sin Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         
         /* HC con costes nuevo Op */
@@ -78,7 +78,7 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, true, true);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC con Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         //////////////
         ///////////
@@ -98,7 +98,7 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingSimulatedAnnealingSearch(estatInicialSA, false, steps, stiter, k, lamb);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA sin Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         /* SA con costes */
         t1 = System.nanoTime();
@@ -106,9 +106,14 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingSimulatedAnnealingSearch(estatInicialSA, true, steps, stiter, k, lamb);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA con Coste: " + (t3 - t2)/1000000);
+        printTime(t1,t2,t3);
         
         
+    }
+    
+    private static void printTime(long t1, long t2, long t3){
+        //System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA con Coste: " + (t3 - t2)/1000000);
+        System.out.println("Tiempo total: " + (t3 - t1)/1000000);
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste, boolean nuevoOp){

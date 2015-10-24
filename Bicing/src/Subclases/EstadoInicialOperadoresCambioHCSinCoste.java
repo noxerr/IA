@@ -27,7 +27,6 @@ public class EstadoInicialOperadoresCambioHCSinCoste extends Estado{
     }
 
     private void generaEstadoInicial(Estaciones e){  
-        int k = 0;
         for (int i = 0; i < Bicing.furgos; i++){
             this.vecCamiones.add(new Furgoneta());
         }

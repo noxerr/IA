@@ -25,14 +25,16 @@ public class EstadoInicial extends Estado{
     }
 
     private void generaEstadoInicial(Estaciones e){  
-        int k = 0;
+        // Añadimos tantas furgonetas como se hayan definido en el problema
         for (int i = 0; i < Bicing.furgos; i++){
             this.vecCamiones.add(new Furgoneta());
         }
         
+        // Calculamos la diferencia de demanda inicial
         for (Estacion e1 : Bicing.e) {
             difDemandaBicis.add(e1.getNumBicicletasNext()-e1.getDemanda()); 
         }
+        //Guardamos la diferencia de demanda inicial para compararla con la final
         Bicing.difDemandaInicial = new ArrayList(difDemandaBicis);
         for (int i = 0; i < e.size(); i++) {
             int aux = e.get(i).getNumBicicletasNext()- e.get(i).getDemanda();
@@ -45,11 +47,11 @@ public class EstadoInicial extends Estado{
                 sumaSobraFalta -= aux;
             }
         }
+        // Prints informativos
         System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
         String retVal = "";
         for (int f : difDemandaBicis) retVal += f + " | ";
         System.out.println("DiffDemanda: " + retVal);
-       // System.out.println("Estado inicial\n----------------\n " + super.toString());
     }
     
     /* Primer estado inicial creado. Se asigna a cada furgoneta como origen las primeras estaciones encontradas con

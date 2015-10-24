@@ -12,7 +12,6 @@ import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -32,20 +31,18 @@ public class SucesoresSinCoste implements SuccessorFunction{
             if(oldEstado.vecCamiones.get(n).origen == -1){
                 end = true;
                 for(int origen = 0; origen<oldEstado.estacOver.size(); origen++){
+                    // Si la estación no ha sido utilizada todavía como origen...
                     if (oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)) != Bicing.EstacionUsada){
                         for(int desti1 = 0; desti1 < oldEstado.estacUnder.size(); desti1++){
+                                // Copiamos el antiguo estado
                                 Estado nuevoEstado = new Estado(oldEstado.vecCamiones, oldEstado.estacOver, oldEstado.estacUnder, 
                                     oldEstado.difDemandaBicis, oldEstado.renta, oldEstado.sumaSobraFalta);
-                                /*System.out.println("----------");
-                                System.out.println("camion n: " + n+n+n + ". Origen: " + origen + ". Demanda: " + 
-                                        oldEstado.difDemandaBicis.get(oldEstado.estacOver.get(origen)));
-                                System.out.println("bicis1: " + nuevoEstado.vecCamiones.get(n));*/
+                                // Definimos origen y destino 1
                                 OperadoresSinCoste.setOrigen(nuevoEstado.vecCamiones.get(n), oldEstado.estacOver.get(origen), 
                                         nuevoEstado.difDemandaBicis);
-                                //System.out.println("bicis2: " + nuevoEstado.vecCamiones.get(n));
                                 OperadoresSinCoste.setDestino1(nuevoEstado.vecCamiones.get(n), oldEstado.estacUnder.get(desti1), 
                                         nuevoEstado);
-                                //System.out.println("bicis3: " + nuevoEstado.vecCamiones.get(n));
+                                // Si aún quedan bicis en la furgoneta...
                                 if(nuevoEstado.vecCamiones.get(n).numBicis > 0){
                                     nuevoEstado.estacUnder.remove(desti1);
                                     for (int desti2 = 0; desti2 < oldEstado.estacUnder.size(); desti2++){
@@ -54,7 +51,6 @@ public class SucesoresSinCoste implements SuccessorFunction{
                                                     nuevoEstado.estacUnder, nuevoEstado.difDemandaBicis, nuevoEstado.renta, nuevoEstado.sumaSobraFalta);
                                             OperadoresSinCoste.setDestino2(nuevoEstado2.vecCamiones.get(n), 
                                                     oldEstado.estacUnder.get(desti2), nuevoEstado2);
-                                            //System.out.println("bicis4: " + nuevoEstado2.vecCamiones.get(n));
                                             double v = -LSHF.getHeuristicValue(nuevoEstado2);
                                             String S = "Operacion:" + " " + origen + " Renta(" + v + ") ---> " 
                                                     + nuevoEstado2.toString();

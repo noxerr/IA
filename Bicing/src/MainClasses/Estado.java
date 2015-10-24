@@ -74,5 +74,6 @@ public class Estado {
         retVal += "\nAhora difDemanda: ";
         for (int f : difDemandaBicis) retVal += f + " | ";
         return retVal;
+
     }
 }
