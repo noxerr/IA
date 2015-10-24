@@ -3,13 +3,18 @@ package MainClasses;
 import IA.Bicing.*;
 import Subclases.EstadoFinalTest;
 import Subclases.EstadoInicial;
+import Subclases.EstadoInicialOperadoresCambioHC;
+import Subclases.EstadoInicialOperadoresCambioHCSinCoste;
 import Subclases.EstadoInicialSA;
+import Subclases.EstadoInicialSASinCoste;
 import Subclases.LocalSearchHeuristicFunctionWithTransport;
 import Subclases.HeuristicFunctionOld;
 import Subclases.SuccessoresSA;
 import Subclases.SuccessoresSASinCoste;
 import Subclases.SucesoresSinCoste;
 import Subclases.Successores;
+import Subclases.SuccessoresOpNuevo;
+import Subclases.SucesoresSinCosteOpNuevo;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -33,12 +38,8 @@ public class Bicing {
     //public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
     //public static int furgos = 10, bicis = 2500, estac = 50, maxBici = 30;
     public static int EstacionUsada = 6001;
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        //Para generar los escenarios deberéis hacer 
-        //que la proporción entre estaciones y bicicletas sea como mínimo 1 a 50.
         long t1,t2,t3;
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
         Estado estatInicial;
@@ -48,35 +49,56 @@ public class Bicing {
         t1 = System.nanoTime();
         estatInicial = new EstadoInicial(e, bicis);
         t2 = System.nanoTime();
-        BicingHillClimbingSearch(estatInicial, false);
+        BicingHillClimbingSearch(estatInicial, false, false);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC sin Coste: " + (t3 - t2)/1000000);
         
         
         /* HC con costes */
         t1 = System.nanoTime();
         estatInicial = new EstadoInicial(e, bicis);
         t2 = System.nanoTime();
-        BicingHillClimbingSearch(estatInicial, true);
+        BicingHillClimbingSearch(estatInicial, true, false);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC con Coste: " + (t3 - t2)/1000000);
         
+        
+        /* HC sin costes nuevo OP*/
+        t1 = System.nanoTime();
+        estatInicial = new EstadoInicialOperadoresCambioHCSinCoste(e, bicis);
+        t2 = System.nanoTime();
+        BicingHillClimbingSearch(estatInicial, false, true);
+        t3 = System.nanoTime();
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC sin Coste: " + (t3 - t2)/1000000);
+        
+        
+        /* HC con costes nuevo Op */
+        t1 = System.nanoTime();
+        estatInicial = new EstadoInicialOperadoresCambioHC(e, bicis);
+        t2 = System.nanoTime();
+        BicingHillClimbingSearch(estatInicial, true, true);
+        t3 = System.nanoTime();
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC con Coste: " + (t3 - t2)/1000000);
+        
+        //////////////
+        ///////////
+        ////////////
         
         /**
          * Parámetros para SA
          */
-        int steps = 1000;
+        int steps = 5000;
         int stiter = 200;
-        int k = 5;
-        double lamb = 0.01;
+        int k = 2;
+        double lamb = 1.0;
         
         /* SA sin costes */
         t1 = System.nanoTime();
-        estatInicialSA = new EstadoInicialSA(e, bicis);
+        estatInicialSA = new EstadoInicialSASinCoste(e, bicis);
         t2 = System.nanoTime();
         BicingSimulatedAnnealingSearch(estatInicialSA, false, steps, stiter, k, lamb);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA sin Coste: " + (t3 - t2)/1000000);
         
         /* SA con costes */
         t1 = System.nanoTime();
@@ -84,22 +106,30 @@ public class Bicing {
         t2 = System.nanoTime();
         BicingSimulatedAnnealingSearch(estatInicialSA, true, steps, stiter, k, lamb);
         t3 = System.nanoTime();
-        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en HC: " + (t3 - t2)/1000000);
+        System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA con Coste: " + (t3 - t2)/1000000);
         
         
     }
     
-    private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste){
+    private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste, boolean nuevoOp){
         System.out.print("\n-------------------------------------------------------------");
-        System.out.println("\nHill Climbing search " + ((coste) ? "con coste:" : "sin coste:"));
+        System.out.println("\nHill Climbing search " + ((coste) ? "con coste y " : "sin coste y ")
+                + ((nuevoOp) ? "\nOperadores Change (como SA):" : "\nOperadores Set (como al principio):"));
         System.out.print("-------------------------------------------------------------");
         Problem problem;
         try {
-            if(coste){
+            if(coste && !nuevoOp){
                 problem = new Problem(estatInicial, new Successores(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
-            }else{
+            }else if (!nuevoOp){
                 problem = new Problem(estatInicial, new SucesoresSinCoste(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());
+            }
+            else if(coste && nuevoOp){
+                problem = new Problem(estatInicial, new SuccessoresOpNuevo(), new EstadoFinalTest(),
+                    new LocalSearchHeuristicFunctionWithTransport());
+            }else {
+                problem = new Problem(estatInicial, new SucesoresSinCosteOpNuevo(), new EstadoFinalTest(),
                     new LocalSearchHeuristicFunctionWithTransport());
             }
             Search searchHClimbing = new HillClimbingSearch();

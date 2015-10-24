@@ -14,6 +14,15 @@ import java.util.ArrayList;
  */
 public class OperadoresSA {
 
+    public static void setOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda){
+        c.origen = origen;
+        int aux = Bicing.e.get(origen).getNumBicicletasNoUsadas() < difDemanda.get(origen) 
+                ? Bicing.e.get(origen).getNumBicicletasNoUsadas() : difDemanda.get(origen);
+        c.numBicis += aux > 30 ? 30 : aux;
+        //c.numBicis += difDemanda.get(origen) > 30 ? 30 : difDemanda.get(origen);
+        difDemanda.set(origen, Bicing.EstacionUsada);
+    }
+    
    public static void changeDestino1(Furgoneta c, int estacionDest, Estado es){
         c.dest1 = estacionDest; 
         Estacion e = Bicing.e.get(c.origen);

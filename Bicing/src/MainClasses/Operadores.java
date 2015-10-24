@@ -129,6 +129,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        es.renta -= c.costeAcumulado;
     }
     
     public static void changeDestino2(Furgoneta c, int estacionDest, Estado es){
@@ -159,6 +160,7 @@ ha de actualizar las bicis que quedan en esa estacion que ha dejado,  las bicis 
             es.difDemandaBicis.set(estacionDest, es.difDemandaBicis.get(estacionDest) + c.numBicis);//ja no faltan bicis
             c.numBicis = 0;
         }
+        es.renta -= c.costeAcumulado;
     }
     public static void changeOrigen(Furgoneta c, int origen, ArrayList<Integer> difDemanda, Estado es){
         difDemanda.set(c.origen, Bicing.difDemandaInicial.get(c.origen));
