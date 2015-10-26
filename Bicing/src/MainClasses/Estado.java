@@ -70,9 +70,10 @@ public class Estado {
             recorrido += f.recorridoOrigenDest1+f.recorridoDest1Dest2;
             
         }
-        retVal += "\nDistancia recorrida: " + recorrido + " metros\n";
+        
         retVal += "\nAhora difDemanda: ";
         for (int f : difDemandaBicis) retVal += f + " | ";
+        retVal += "\nRenta Recorrido Tiempo: \nRenta: " + renta + "\tRecorrido: " + recorrido + "\t";
         return retVal;
 
     }

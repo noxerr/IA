@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,12 +37,16 @@ public class Bicing {
     public static ArrayList<Integer> difDemandaInicial; //diferencia positiva es que sobran bicis
     public static int furgos = 5, bicis = 1250, estac = 25, maxBici = 30;
     //public static int furgos = 15, bicis = 3750, estac = 75, maxBici = 30;
+    //public static int furgos = 20, bicis = 5000, estac = 100, maxBici = 30;
+    //public static int furgos = 25, bicis = 6250, estac = 125, maxBici = 30;
     //public static int furgos = 10, bicis = 2500, estac = 50, maxBici = 30;
     public static int EstacionUsada = 6001;
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         long t1,t2,t3;
         e = new Estaciones(estac, bicis, Estaciones.EQUILIBRIUM, 1234);
+
         Estado estatInicial;
         Estado estatInicialSA;
         
@@ -52,27 +57,28 @@ public class Bicing {
         BicingHillClimbingSearch(estatInicial, false, false);
         t3 = System.nanoTime();
         printTime(t1,t2,t3);
+       
         
         
-        /* HC con costes */
+//        /* HC con costes */
         t1 = System.nanoTime();
         estatInicial = new EstadoInicial(e, bicis);
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, true, false);
         t3 = System.nanoTime();
         printTime(t1,t2,t3);
-        
-        
-        /* HC sin costes nuevo OP*/
+//        
+//        
+//        /* HC sin costes nuevo OP*/
         t1 = System.nanoTime();
         estatInicial = new EstadoInicialOperadoresCambioHCSinCoste(e, bicis);
         t2 = System.nanoTime();
         BicingHillClimbingSearch(estatInicial, false, true);
         t3 = System.nanoTime();
         printTime(t1,t2,t3);
-        
-        
-        /* HC con costes nuevo Op */
+//        
+//        
+//        /* HC con costes nuevo Op */
         t1 = System.nanoTime();
         estatInicial = new EstadoInicialOperadoresCambioHC(e, bicis);
         t2 = System.nanoTime();
@@ -88,9 +94,9 @@ public class Bicing {
          * Parámetros para SA
          */
         int steps = 5000;
-        int stiter = 200;
-        int k = 2;
-        double lamb = 1.0;
+        int stiter = 100;
+        int k = 15;
+        double lamb = 0.001;
         
         /* SA sin costes */
         t1 = System.nanoTime();
@@ -113,7 +119,8 @@ public class Bicing {
     
     private static void printTime(long t1, long t2, long t3){
         //System.out.println("Tiempo en generar Estado: " + (t2 - t1)/1000000 + ". Tiempo en SA con Coste: " + (t3 - t2)/1000000);
-        System.out.println("Tiempo total: " + (t3 - t1)/1000000);
+        //System.out.println("Tiempo total: " + (t3 - t1)/1000000);
+        System.out.println((t3 - t1)/1000000 + " ms");
     }
     
     private static void BicingHillClimbingSearch(Estado estatInicial, boolean coste, boolean nuevoOp){
@@ -188,7 +195,7 @@ public class Bicing {
         /*for (Object action1 : actions) {
             System.out.println(action1);
         }*/
-        if (actions.size() > 0) System.out.println(actions.get(actions.size()-1));
+        if (actions.size() > 0) System.out.print(actions.get(actions.size()-1));
         /*actions.stream().map((action1) -> (String) action1).forEach((action) -> {
                 System.out.println(action);
         });*/

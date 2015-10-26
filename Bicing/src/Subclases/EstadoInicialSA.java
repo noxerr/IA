@@ -49,6 +49,11 @@ public class EstadoInicialSA extends Estado{
             }
         }
         
+        System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder+ "\nRenta:" + renta);
+        String retVal = "";
+        for (int f : difDemandaBicis) retVal += f + " | ";
+        System.out.println("DiffDemanda: " + retVal);
+        
         //Iniciamos con origenes y destinos random
         int origen = 0, dest = 0;
         for(int n = 0; n < vecCamiones.size(); n++){
@@ -64,11 +69,12 @@ public class EstadoInicialSA extends Estado{
             }
         }
          
-        
-        System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder);
-        String retVal = "";
+        System.out.println("Estaciones que necesitan bicis: " + estacUnder.size() + " " + estacUnder + "\nRenta:" + renta);
+        retVal = "";
         for (int f : difDemandaBicis) retVal += f + " | ";
         System.out.println("DiffDemanda: " + retVal);
+        
+        
        // System.out.println("Estado inicial\n----------------\n " + super.toString());
     }
   
