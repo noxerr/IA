@@ -136,7 +136,7 @@ public class Bicing {
                     System.out.println("k:");
                     k = in.nextInt();
                     System.out.println("Lambda:");
-                    lamb = in.nextInt();
+                    lamb = in.nextDouble();
                     break;
                 case 7:
                     System.out.println("------------ GENERAL -----------------------");
